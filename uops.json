@@ -1,0 +1,52 @@
+{
+    "uops": [
+        {"uop":"ADC", "opcode":"6d", "addressing":"a"},
+        {"uop":"ADC", "opcode":"7d", "addressing":"a,x"},
+        {"uop":"ADC", "opcode":"79", "addressing":"a,y"},
+        {"uop":"ADC", "opcode":"6f", "addressing":"al"},
+        {"uop":"ADC", "opcode":"7f", "addressing":"al,x"},
+        {"uop":"ADC", "opcode":"65", "addressing":"d"},
+        {"uop":"ADC", "opcode":"63", "addressing":"d,s"},
+        {"uop":"ADC", "opcode":"75", "addressing":"d,x"},
+        {"uop":"ADC", "opcode":"72", "addressing":"(d)"},
+        {"uop":"ADC", "opcode":"67", "addressing":"[d]"},
+        {"uop":"ADC", "opcode":"73", "addressing":"(d,s),y"},
+        {"uop":"ADC", "opcode":"61", "addressing":"(d,x)"},
+        {"uop":"ADC", "opcode":"71", "addressing":"(d),y"},
+        {"uop":"ADC", "opcode":"77", "addressing":"[d],y"},
+        {"uop":"ADC", "opcode":"69", "addressing":"#"},
+
+        {"uop":"LDA", "opcode":"ad", "addressing":"a"},
+        {"uop":"LDA", "opcode":"bd", "addressing":"a,x"},
+        {"uop":"LDA", "opcode":"b9", "addressing":"a,y"},
+        {"uop":"LDA", "opcode":"af", "addressing":"al"},
+        {"uop":"LDA", "opcode":"bf", "addressing":"al,x"},
+        {"uop":"LDA", "opcode":"a5", "addressing":"d"},
+        {"uop":"LDA", "opcode":"a3", "addressing":"d,s"},
+        {"uop":"LDA", "opcode":"b5", "addressing":"d,x"},
+        {"uop":"LDA", "opcode":"b2", "addressing":"(d)"},
+        {"uop":"LDA", "opcode":"a7", "addressing":"[d]"},
+        {"uop":"LDA", "opcode":"b3", "addressing":"(d,s),y"},
+        {"uop":"LDA", "opcode":"a1", "addressing":"(d,x)"},
+        {"uop":"LDA", "opcode":"b1", "addressing":"(d),y"},
+        {"uop":"LDA", "opcode":"b7", "addressing":"[d],y"},
+        {"uop":"LDA", "opcode":"a9", "addressing":"#"},
+
+        {"uop":"STA", "opcode":"8d", "addressing":"a"},
+        {"uop":"STA", "opcode":"9d", "addressing":"a,x"},
+        {"uop":"STA", "opcode":"8f", "addressing":"al"},
+        {"uop":"STA", "opcode":"9f", "addressing":"al,x"},
+        {"uop":"STA", "opcode":"85", "addressing":"d"},
+        {"uop":"STA", "opcode":"83", "addressing":"d,s"},
+        {"uop":"STA", "opcode":"95", "addressing":"d,x"},
+        {"uop":"STA", "opcode":"92", "addressing":"(d)"},
+        {"uop":"STA", "opcode":"87", "addressing":"[d]"},
+        {"uop":"STA", "opcode":"93", "addressing":"(d,s),y"},
+        {"uop":"STA", "opcode":"81", "addressing":"(d,x"},
+        {"uop":"STA", "opcode":"91", "addressing":"(d),y"},
+        {"uop":"STA", "opcode":"97", "addressing":"[d],y"},
+
+        {"uop":"", "opcode":"", "addressing":""}
+    ]
+
+}

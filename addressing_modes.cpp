@@ -1,0 +1,240 @@
+#include "addressing_modes.hpp"
+
+uint16_t AbsoluteAddressingMode::operand()
+{
+    uint32_t effectiveAddress;
+
+    effectiveAddress = static_cast<uint32_t>(m_reg->dbr())<<16 | static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    m_reg->pc(m_reg->pc() + 2);
+
+    return m_mem->Read<uint16_t>(effectiveAddress);
+}
+
+uint16_t ImmediateMode::operand()
+{
+    uint16_t op = m_mem->Read<uint16_t>(m_reg->pc());
+    m_reg->pc(m_reg->pc() + 2);
+
+    return op;
+}
+
+uint16_t ProgramCounterRelativeMode::operand()
+{
+    uint8_t relByte = m_mem->Read<uint8_t>(m_reg->pc());
+    m_reg->pc(m_reg->pc() + 1);
+
+    return m_reg->pc() + static_cast<uint16_t>(relByte);
+}
+
+uint16_t AccumulatorMode::operand()
+{
+    return m_reg->a();
+}
+
+uint16_t ProgramCounterRelativeLongMode::operand()
+{
+    uint16_t relByte = m_mem->Read<uint16_t>(m_reg->pc());
+    m_reg->pc(m_reg->pc() + 2);
+
+    return m_reg->pc() + relByte;
+}
+
+uint16_t ImpliedMode::operand()
+{
+    return 0;
+}
+
+uint16_t StackMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndexedXMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndexedYMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndirectMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndexedIndirectMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndirectIndexedMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndirectLongMode::operand()
+{
+    return 0;
+}
+
+uint16_t DirectIndirectLongIndexedMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteIndexedXMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteIndexedYMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteLongMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteLongIndexedMode::operand()
+{
+    return 0;
+}
+
+uint16_t StackRelativeMode::operand()
+{
+    return 0;
+}
+
+uint16_t StackRelativeIndirectIndexedMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteIndirectMode::operand()
+{
+    return 0;
+}
+
+uint16_t AbsoluteIndexedIndirectMode::operand()
+{
+    return 0;
+}
+
+uint16_t BlockMoveMode::operand()
+{
+    return 0;
+}
+
+
+
+
+void AbsoluteAddressingMode::operand(const uint16_t &op)
+{
+    uint32_t effectiveAddress;
+
+    effectiveAddress = static_cast<uint32_t>(m_reg->dbr())<<16 | static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    m_reg->pc(m_reg->pc() + 2);
+
+    m_mem->Write(effectiveAddress, op);
+}
+
+void ImmediateMode::operand(const uint16_t &op)
+{
+}
+
+void ProgramCounterRelativeMode::operand(const uint16_t &op)
+{
+}
+
+void AccumulatorMode::operand(const uint16_t &op)
+{
+}
+
+void ProgramCounterRelativeLongMode::operand(const uint16_t &op)
+{
+}
+
+void ImpliedMode::operand(const uint16_t &op)
+{
+}
+
+void StackMode::operand(const uint16_t &op)
+{
+}
+
+void DirectMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndexedXMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndexedYMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndirectMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndexedIndirectMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndirectIndexedMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndirectLongMode::operand(const uint16_t &op)
+{
+}
+
+void DirectIndirectLongIndexedMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteIndexedXMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteIndexedYMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteLongMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteLongIndexedMode::operand(const uint16_t &op)
+{
+}
+
+void StackRelativeMode::operand(const uint16_t &op)
+{
+}
+
+void StackRelativeIndirectIndexedMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteIndirectMode::operand(const uint16_t &op)
+{
+}
+
+void AbsoluteIndexedIndirectMode::operand(const uint16_t &op)
+{
+}
+
+void BlockMoveMode::operand(const uint16_t &op)
+{
+}
