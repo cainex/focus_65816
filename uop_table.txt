@@ -46,24 +46,24 @@
 2d and a 4
 2e rol a 6
 2f and al 5
-30 
-31
-32
-33
-34
-35
-36
-37
-38
-39
-3a
-3b
-3c
-3d
-3e
-3f
-40
-41
+30 bmi R 2
+31 and (d),y 6
+32 and (d) 5
+33 and (d,s),y 7
+34 bit d,x 4
+35 and d,x 4
+36 rol d,x 6
+37 and [d],y 6
+38 sec i 2
+39 and a,y 4
+3a dec A 2
+3b tsc i 2
+3c bit a,x 4
+3d and a,x 4
+3e rol a,x 7
+3f and al,x 5
+40 rti s 7
+41 eor (d,x) 2
 42
 43
 44
