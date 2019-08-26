@@ -1,0 +1,256 @@
+00 brk s 7 
+01 ora (d,x) 6
+02 cop s 7
+03 ora d,s 4
+04 tsb d 5
+05 ora d 3
+06 asl d 5
+07 ora [d] 6
+08 php s 3
+09 ora # 2
+0a asl A 2
+0b phd s 4
+0c tsb a 6
+0d ora a 4
+0e asl a 6
+0f ora al 5
+10 bpl r 2
+11 ora (d),y 5 
+12 ora (d) 5
+13 ora (d,s),y 7
+14 trb d 5
+15 ora d,x 4
+16 asl d,x 6
+17 ora [d],y 6
+18 clc i 2
+19 ora a,y 4
+1a inc A 2
+1b tcs i 2
+1c trb a 6
+1d ora a,x 4
+1e asl a,x 3
+1f ora al,x 5
+20 jsr a 6
+21 and (d,x) 6
+22 jsl al 8
+23 and d,s 4
+24 bit d 3
+25 and d 3
+26 rol d 5
+27 and [d] 6
+28 plp s 4
+29 and # 2
+2a rol A 2
+2b pld s 5
+2c bit a 4
+2d and a 4
+2e rol a 6
+2f and al 5
+30 
+31
+32
+33
+34
+35
+36
+37
+38
+39
+3a
+3b
+3c
+3d
+3e
+3f
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+4a
+4b
+4c
+4d
+4e
+4f
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+5a
+5b
+5c
+5d
+5e
+5f
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+6a
+6b
+6c
+6d
+6e
+6f
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+7a
+7b
+7c
+7d
+7e
+7f
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+8a
+8b
+8c
+8d
+8e
+8f
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+9a
+9b
+9c
+9d
+9e
+9f
+a0
+a1
+a2
+a3
+a4
+a5
+a6
+a7
+a8
+a9
+aa
+ab
+ac
+ad
+ae
+af
+b0
+b1
+b2
+b3
+b4
+b5
+b6
+b7
+b8
+b9
+ba
+bb
+bc
+bd
+be
+bf
+c0
+c1
+c2
+c3
+c4
+c5
+c6
+c7
+c8
+c9
+ca
+cb
+cc
+cd
+ce
+cf
+d0
+d1
+d2
+d3
+d4
+d5
+d6
+d7
+d8
+d9
+da
+db
+dc
+dd
+de
+df
+e0
+e1
+e2
+e3
+e4
+e5
+e6
+e7
+e8
+e9
+ea
+eb
+ec
+ed
+ee
+ef
+f0
+f1
+f2
+f3
+f4
+f5
+f6
+f7
+f8
+f9
+fa
+fb
+fc
+fd
+fe
+ff
