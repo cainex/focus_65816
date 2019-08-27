@@ -64,59 +64,59 @@
 3f and al,x 5
 40 rti s 7
 41 eor (d,x) 2
-42
-43
-44
-45
-46
-47
-48
-49
-4a
-4b
-4c
-4d
-4e
-4f
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-5a
-5b
-5c
-5d
-5e
-5f
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-6a
-6b
-6c
-6d
-6e
-6f
-70
-71
-72
-73
-74
-75
-76
+42 wdm i 2
+43 eor d,s 4
+44 mvp xyc 7
+45 eor d 3
+46 lsr d 5
+47 eor [d] 6
+48 pha s 3
+49 eor # 2
+4a lsr A 2
+4b phk s 3
+4c jmp a 3
+4d eor a 4
+4e lsr a 6
+4f eor Al 5
+50 bvc r 2
+51 eor (d),y 5
+52 eor (d) 5
+53 eor (d,s),y 7
+54 mvn xyc 7
+55 eor d,x 4
+56 lsr d,x 6
+57 eor [d],y 6
+58 cli i 2
+59 eor a,y 4
+5a phy s 3
+5b tcd i 2
+5c jmp al 4
+5d eor a,x 4
+5e lsr a,x 7
+5f eor al,x 5
+60 rts s 6
+61 adc (d,x) 6
+62 per s 6
+63 adc d,s 4
+64 stz d 3
+65 adc d,x 4
+66 ror d,x 6
+67 adc [d] 6
+68 pla s 4
+69 adc # 2
+6a ror A 2
+6b rtl s 6
+6c jmp (a) 5
+6d adc a 4
+6e ror a 6
+6f adc al 5
+70 bvs r 2
+71 adc (d),y 5
+72 adc (d) 5
+73 adc (d,s),y 7
+74 stz d,x 3
+75 adc d,x 4
+76 ror d,x 6
 77
 78
 79
