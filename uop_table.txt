@@ -117,140 +117,140 @@
 74 stz d,x 3
 75 adc d,x 4
 76 ror d,x 6
-77
-78
-79
-7a
-7b
-7c
-7d
-7e
-7f
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-8a
-8b
-8c
-8d
-8e
-8f
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-9a
-9b
-9c
-9d
-9e
-9f
-a0
-a1
-a2
-a3
-a4
-a5
-a6
-a7
-a8
-a9
-aa
-ab
-ac
-ad
-ae
-af
-b0
-b1
-b2
-b3
-b4
-b5
-b6
-b7
-b8
-b9
-ba
-bb
-bc
-bd
-be
-bf
-c0
-c1
-c2
-c3
-c4
-c5
-c6
-c7
-c8
-c9
-ca
-cb
-cc
-cd
-ce
-cf
-d0
-d1
-d2
-d3
-d4
-d5
-d6
-d7
-d8
-d9
-da
-db
-dc
-dd
-de
-df
-e0
-e1
-e2
-e3
-e4
-e5
-e6
-e7
-e8
-e9
-ea
-eb
-ec
-ed
-ee
-ef
-f0
-f1
-f2
-f3
-f4
-f5
-f6
-f7
-f8
-f9
-fa
-fb
-fc
-fd
-fe
-ff
+77 adc [d],y 6
+78 sei i 2
+79 adc a,y 4
+7a ply s 4
+7b tdc i 2
+7c jmp (a,x) 6
+7d adc a,x 4
+7e ror a,x 7
+7f adc al,x 5
+80 bra r 2
+81 sta (d,x) 6
+82 brl rl 4
+83 sta d,s 4
+84 sty d 3
+85 sta d 3
+86 stx d 3
+87 sta [d] 2
+88 dey i 2
+89 bit # 2
+8a txa i 2
+8b phb s 3
+8c sty a 4
+8d sta a 4
+8e stx a 4
+8f sta al 5
+90 bcc r 2
+91 sta (d),y 6
+92 sta (d) 5
+93 sta (d,s),y 7
+94 sty d,x 4
+95 sta d,x 4
+96 stx d,y 4
+97 sta [d],y 6
+98 tya i 2
+99 sta a,y 5
+9a txs i 2
+9b txy i 2
+9c stz a 4
+9d sta a,x 5
+9e stz a,x 5
+9f sta al,x 5
+a0 ldy # 2
+a1 lda (d,x) 6
+a2 ldx # 2
+a3 lda d,s 4
+a4 ldy d 3
+a5 lda d 3
+a6 ldx d 3
+a7 lda [d] 6
+a8 tay i 2
+a9 lda # 2
+aa tax i 2
+ab plb s 4
+ac ldy a 4
+ad lda a 4
+ae ldx a 4
+af lda al 5
+b0 bcs r 2
+b1 lda (d),y 5
+b2 lda (d) 5
+b3 lda (d,s),y 7
+b4 ldy d,x 4
+b5 lda d,x 4
+b6 ldx d,y 4
+b7 lda [d],y 6
+b8 clv i 2
+b9 lda a,y 4
+ba tsx i 2
+bb tyx i 2
+bc ldy a,x 4
+bd lda a,x 4
+be ldx a,y 4
+bf lda al,x 5
+c0 cpy # 2
+c1 cmp (d,x) 6
+c2 rep # 3
+c3 cmp d,s 4
+c4 cpy d 3
+c5 cmp d 3
+c6 dec d 5
+c7 cmp [d] 6
+c8 iny i 2
+c9 cmp # 2
+ca dex i 2
+cb wai l 3
+cc cpy a 4
+cd cmp a 4 
+ce dec a 6
+cf cmp al 5
+d0 bne r 2
+d1 cmp (d),y 5
+d2 cmp (d) 5
+d3 cmp (d,s),y 7
+d4 pei s 6
+d5 cmp d,x 6
+d6 dec d,x 6
+d7 cmp [d],y 6
+d8 cld i 2
+d9 cmp a,y 4
+da phx s 3
+db stp i 3
+dc jml (a) 6
+dd cmp a,x 4
+de dec a,x 7
+df cmp al,x 5
+e0 cpx # 2
+e1 sbc (d,x) 6
+e2 sep # 3
+e3 sbc d,s 4
+e4 cpx d 3
+e5 sbc d 3
+e6 inc d 5
+e7 sbc [d] 6
+e8 inx i 2
+e9 sbc # 2
+ea nop i 2
+eb xba i 3
+ec cpx a 4
+ed sbc a 4
+ee inc a 6
+ef sbc al 5
+f0 beq r 2
+f1 sbc (d),y 5
+f2 sbc (d) 5
+f3 sbc (d,s),y 7
+f4 pea s 5
+f5 sbc d,x 4
+f6 inc d,x 6
+f7 sbc [d],y 6
+f8 sed i 2
+f9 sbc a,y 4
+fa plx s 4
+fb xce i 2
+fc jsr (a,x) 8
+fd sbc a,x 4
+fe inc a,x 7
+ff sbc al,x 5
