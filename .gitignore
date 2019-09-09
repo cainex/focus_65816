@@ -34,3 +34,8 @@
 build/*
 generated_*.cpp
 generated_*.h 
+
+LastTest.log
+CTestCostData.txt
+
+*~
