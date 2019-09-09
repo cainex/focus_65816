@@ -1,6 +1,6 @@
 #include "addressing_modes.hpp"
 
-uint16_t AbsoluteAddressingMode::operand()
+uint16_t AbsoluteMode::operand()
 {
     uint32_t effectiveAddress;
 
@@ -137,7 +137,7 @@ uint16_t BlockMoveMode::operand()
 
 
 
-void AbsoluteAddressingMode::operand(const uint16_t &op)
+void AbsoluteMode::operand(const uint16_t &op)
 {
     uint32_t effectiveAddress;
 

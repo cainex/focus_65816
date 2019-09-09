@@ -20,12 +20,12 @@ protected:
 private:
 };
 
-class AbsoluteAddressingMode: public AddressingMode
+class AbsoluteMode: public AddressingMode
 {
 public:
-    AbsoluteAddressingMode() = delete;
-    AbsoluteAddressingMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
-    ~AbsoluteAddressingMode() {}
+    AbsoluteMode() = delete;
+    AbsoluteMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
+    ~AbsoluteMode() {}
 
     virtual uint16_t operand();
     virtual void operand(const uint16_t &op);

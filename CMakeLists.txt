@@ -16,9 +16,17 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
   set(CMAKE_CXX_FLAGS "-std=c++17") 
 endif()
 
-set (SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp opcode.cpp decoder.cpp)
+include_directories(${CMAKE_SOURCE_DIR})
+
+set (SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp opcode.cpp generated_decoder.cpp)
 set (HEADER_FILES memory_manager.hpp opcode.hpp register_file.hpp opcode.hpp decoder.hpp)
 
-add_executable(emulator ${SOURCE_FILES})
+add_custom_command(
+  OUTPUT generated_decoder.cpp
+  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_code.py --filename=${CMAKE_SOURCE_DIR}/uops.json > generated_decoder.cpp
+  DEPENDS ${CMAKE_SOURCE_DIR}/uops.json
+)
+
+add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
 install(TARGETS emulator DESTINATION bin)
