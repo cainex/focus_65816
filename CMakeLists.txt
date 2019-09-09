@@ -23,7 +23,7 @@ set (HEADER_FILES memory_manager.hpp opcode.hpp register_file.hpp opcode.hpp dec
 
 add_custom_command(
   OUTPUT generated_decoder.cpp
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_code.py --filename=${CMAKE_SOURCE_DIR}/uops.json > generated_decoder.cpp
+  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_code.py --filename=${CMAKE_SOURCE_DIR}/opcodes.json > generated_decoder.cpp
   DEPENDS ${CMAKE_SOURCE_DIR}/uops.json
 )
 

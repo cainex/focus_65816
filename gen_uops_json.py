@@ -59,7 +59,6 @@ def addressing_mode(addr_mode_string):
     else:
         print("Invalid Addressing Mode '{}'".format(addr_mode_string))
         raise ValueError
-        return
 
 def main(argv):
     del argv  # Unused.
