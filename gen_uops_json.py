@@ -69,7 +69,7 @@ def main(argv):
         line = fp.readline()
         while line:
             split_line = line.split()
-            uops[split_line[0]] = {'uop' : split_line[1], 'addr_mode' : addressing_mode(split_line[2]), 'cycles' : split_line[3]}
+            uops[split_line[0]] = {'uop' : split_line[1], 'addr_mode' : addressing_mode(split_line[2]), 'addr_mode_string' : split_line[2], 'cycles' : split_line[3]}
             line = fp.readline()
 
     num_uops = len(uops)
@@ -77,7 +77,7 @@ def main(argv):
     print("\t\"uop_decode\": [")
     i = 0
     for k,v in uops.items():
-        uop_string = "\t\t{{\"opcode\":\"0x{}\", \"uop\":\"{}\", \"addr_mode\":\"{}\", \"cycles\":\"{}\"}}".format(k, v["uop"].upper(), v['addr_mode'], v['cycles'])
+        uop_string = "\t\t{{\"opcode\":\"0x{}\", \"uop\":\"{}\", \"addr_mode\":\"{}\", \"addr_mode_string\":\"{}\", \"cycles\":\"{}\"}}".format(k, v["uop"].upper(), v['addr_mode'], v['addr_mode_string'], v['cycles'])
         if i < num_uops - 1:
             uop_string = uop_string + ","
         print(uop_string)

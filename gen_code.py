@@ -29,7 +29,7 @@ decoder_postable = """
 
 uop_template_string = """
     {% if first == True %} else {% endif %} if (uop == {{ opcode }} ) { // {{ uop }} {{ addr_mode }}
-        std::cout << "{{ uop }}  {{ addr_mode }}" << std::endl;
+        std::cout << "{{ uop }} {{ addr_mode_string }}" << std::endl;
         std::shared_ptr<AddressingMode> addressingMode(new {{addr_mode}}Mode(m_mem, m_reg));
         std::shared_ptr<OpCode> opCode(new {{ uop }}(addressingMode, m_mem, m_reg));
         m_reg->pc(m_reg->pc() + 1);
@@ -40,7 +40,7 @@ uop_template_string = """
 uop_template = Template(uop_template_string)
 
 def render_uop(first, uop):
-    return uop_template.render(first=first, opcode=uop['opcode'], uop=uop['uop'], addr_mode=uop['addr_mode'])
+    return uop_template.render(first=first, opcode=uop['opcode'], uop=uop['uop'], addr_mode=uop['addr_mode'], addr_mode_string=uop['addr_mode_string'])
     
 def main(argv):
     del argv  # Unused.
