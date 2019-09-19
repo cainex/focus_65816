@@ -2,17 +2,17 @@
 
 bool ADC::Execute()
 {
-    uint32_t m;
+    uint32_t o;
     uint32_t c;
     uint32_t r;
 
-    m = static_cast<uint32_t>(m_addrMode->operand());
+    o = static_cast<uint32_t>(m_addrMode->operand());
     c = m_reg->c() ? 1 : 0;
 
-    r = static_cast<uint32_t>(m_reg->a()) + m + c;
+    r = static_cast<uint32_t>(m_reg->a()) + o + c;
 
     // Update status flags
-    (m_reg->a() ^ r) & (m ^ r) & 0x8000 ? m_reg->setV() : m_reg->clrV();
+    (m_reg->a() ^ r) & (o ^ r) & 0x8000 ? m_reg->setV() : m_reg->clrV();
     r & 0x10000 ? m_reg->setC() : m_reg->clrC();
     r & 0x8000 ? m_reg->setN() : m_reg->clrN();
     r == 0 ? m_reg->setZ() : m_reg->clrZ();

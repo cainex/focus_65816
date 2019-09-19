@@ -1,260 +1,652 @@
 {
-	"uop_decode": [
-		{"opcode":"0x00", "uop":"BRK", "addr_mode":"Stack", "cycles":"7"},
-		{"opcode":"0x01", "uop":"ORA", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0x02", "uop":"COP", "addr_mode":"Stack", "cycles":"7"},
-		{"opcode":"0x03", "uop":"ORA", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0x04", "uop":"TSB", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0x05", "uop":"ORA", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x06", "uop":"ASL", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0x07", "uop":"ORA", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0x08", "uop":"PHP", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0x09", "uop":"ORA", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0x0a", "uop":"ASL", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x0b", "uop":"PHD", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0x0c", "uop":"TSB", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x0d", "uop":"ORA", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x0e", "uop":"ASL", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x0f", "uop":"ORA", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0x10", "uop":"BPL", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x11", "uop":"ORA", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0x12", "uop":"ORA", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0x13", "uop":"ORA", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0x14", "uop":"TRB", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0x15", "uop":"ORA", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x16", "uop":"ASL", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0x17", "uop":"ORA", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0x18", "uop":"CLC", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x19", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0x1a", "uop":"INC", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x1b", "uop":"TCS", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x1c", "uop":"TRB", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x1d", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0x1e", "uop":"ASL", "addr_mode":"AbsoluteIndexedWithX", "cycles":"3"},
-		{"opcode":"0x1f", "uop":"ORA", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0x20", "uop":"JSR", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x21", "uop":"AND", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0x22", "uop":"JSL", "addr_mode":"AbsoluteLong", "cycles":"8"},
-		{"opcode":"0x23", "uop":"AND", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0x24", "uop":"BIT", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x25", "uop":"AND", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x26", "uop":"ROL", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0x27", "uop":"AND", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0x28", "uop":"PLP", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0x29", "uop":"AND", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0x2a", "uop":"ROL", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x2b", "uop":"PLD", "addr_mode":"Stack", "cycles":"5"},
-		{"opcode":"0x2c", "uop":"BIT", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x2d", "uop":"AND", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x2e", "uop":"ROL", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x2f", "uop":"AND", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0x30", "uop":"BMI", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x31", "uop":"AND", "addr_mode":"DirectIndirectIndexed", "cycles":"6"},
-		{"opcode":"0x32", "uop":"AND", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0x33", "uop":"AND", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0x34", "uop":"BIT", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x35", "uop":"AND", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x36", "uop":"ROL", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0x37", "uop":"AND", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0x38", "uop":"SEC", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x39", "uop":"AND", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0x3a", "uop":"DEC", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x3b", "uop":"TSC", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x3c", "uop":"BIT", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0x3d", "uop":"AND", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0x3e", "uop":"ROL", "addr_mode":"AbsoluteIndexedWithX", "cycles":"7"},
-		{"opcode":"0x3f", "uop":"AND", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0x40", "uop":"RTI", "addr_mode":"Stack", "cycles":"7"},
-		{"opcode":"0x41", "uop":"EOR", "addr_mode":"DirectIndexedIndirect", "cycles":"2"},
-		{"opcode":"0x42", "uop":"WDM", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x43", "uop":"EOR", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0x44", "uop":"MVP", "addr_mode":"BlockMove", "cycles":"7"},
-		{"opcode":"0x45", "uop":"EOR", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x46", "uop":"LSR", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0x47", "uop":"EOR", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0x48", "uop":"PHA", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0x49", "uop":"EOR", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0x4a", "uop":"LSR", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x4b", "uop":"PHK", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0x4c", "uop":"JMP", "addr_mode":"Absolute", "cycles":"3"},
-		{"opcode":"0x4d", "uop":"EOR", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x4e", "uop":"LSR", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x4f", "uop":"EOR", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0x50", "uop":"BVC", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x51", "uop":"EOR", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0x52", "uop":"EOR", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0x53", "uop":"EOR", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0x54", "uop":"MVN", "addr_mode":"BlockMove", "cycles":"7"},
-		{"opcode":"0x55", "uop":"EOR", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x56", "uop":"LSR", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0x57", "uop":"EOR", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0x58", "uop":"CLI", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x59", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0x5a", "uop":"PHY", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0x5b", "uop":"TCD", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x5c", "uop":"JMP", "addr_mode":"AbsoluteLong", "cycles":"4"},
-		{"opcode":"0x5d", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0x5e", "uop":"LSR", "addr_mode":"AbsoluteIndexedWithX", "cycles":"7"},
-		{"opcode":"0x5f", "uop":"EOR", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0x60", "uop":"RTS", "addr_mode":"Stack", "cycles":"6"},
-		{"opcode":"0x61", "uop":"ADC", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0x62", "uop":"PER", "addr_mode":"Stack", "cycles":"6"},
-		{"opcode":"0x63", "uop":"ADC", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0x64", "uop":"STZ", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x65", "uop":"ADC", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x66", "uop":"ROR", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0x67", "uop":"ADC", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0x68", "uop":"PLA", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0x69", "uop":"ADC", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0x6a", "uop":"ROR", "addr_mode":"Accumulator", "cycles":"2"},
-		{"opcode":"0x6b", "uop":"RTL", "addr_mode":"Stack", "cycles":"6"},
-		{"opcode":"0x6c", "uop":"JMP", "addr_mode":"AbsoluteIndirect", "cycles":"5"},
-		{"opcode":"0x6d", "uop":"ADC", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x6e", "uop":"ROR", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0x6f", "uop":"ADC", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0x70", "uop":"BVS", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x71", "uop":"ADC", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0x72", "uop":"ADC", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0x73", "uop":"ADC", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0x74", "uop":"STZ", "addr_mode":"DirectIndexedWithX", "cycles":"3"},
-		{"opcode":"0x75", "uop":"ADC", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x76", "uop":"ROR", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0x77", "uop":"ADC", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0x78", "uop":"SEI", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x79", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0x7a", "uop":"PLY", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0x7b", "uop":"TDC", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x7c", "uop":"JMP", "addr_mode":"AbsoluteIndexedIndirect", "cycles":"6"},
-		{"opcode":"0x7d", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0x7e", "uop":"ROR", "addr_mode":"AbsoluteIndexedWithX", "cycles":"7"},
-		{"opcode":"0x7f", "uop":"ADC", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0x80", "uop":"BRA", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x81", "uop":"STA", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0x82", "uop":"BRL", "addr_mode":"ProgramCounterRelativeLong", "cycles":"4"},
-		{"opcode":"0x83", "uop":"STA", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0x84", "uop":"STY", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x85", "uop":"STA", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x86", "uop":"STX", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0x87", "uop":"STA", "addr_mode":"DirectIndirectLong", "cycles":"2"},
-		{"opcode":"0x88", "uop":"DEY", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x89", "uop":"BIT", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0x8a", "uop":"TXA", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x8b", "uop":"PHB", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0x8c", "uop":"STY", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x8d", "uop":"STA", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x8e", "uop":"STX", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x8f", "uop":"STA", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0x90", "uop":"BCC", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0x91", "uop":"STA", "addr_mode":"DirectIndirectIndexed", "cycles":"6"},
-		{"opcode":"0x92", "uop":"STA", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0x93", "uop":"STA", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0x94", "uop":"STY", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x95", "uop":"STA", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0x96", "uop":"STX", "addr_mode":"DirectIndexedWithY", "cycles":"4"},
-		{"opcode":"0x97", "uop":"STA", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0x98", "uop":"TYA", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x99", "uop":"STA", "addr_mode":"AbsoluteIndexedWithY", "cycles":"5"},
-		{"opcode":"0x9a", "uop":"TXS", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x9b", "uop":"TXY", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0x9c", "uop":"STZ", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0x9d", "uop":"STA", "addr_mode":"AbsoluteIndexedWithX", "cycles":"5"},
-		{"opcode":"0x9e", "uop":"STZ", "addr_mode":"AbsoluteIndexedWithX", "cycles":"5"},
-		{"opcode":"0x9f", "uop":"STA", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0xa0", "uop":"LDY", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xa1", "uop":"LDA", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0xa2", "uop":"LDX", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xa3", "uop":"LDA", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0xa4", "uop":"LDY", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xa5", "uop":"LDA", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xa6", "uop":"LDX", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xa7", "uop":"LDA", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0xa8", "uop":"TAY", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xa9", "uop":"LDA", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xaa", "uop":"TAX", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xab", "uop":"PLB", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0xac", "uop":"LDY", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xad", "uop":"LDA", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xae", "uop":"LDX", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xaf", "uop":"LDA", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0xb0", "uop":"BCS", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0xb1", "uop":"LDA", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0xb2", "uop":"LDA", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0xb3", "uop":"LDA", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0xb4", "uop":"LDY", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0xb5", "uop":"LDA", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0xb6", "uop":"LDX", "addr_mode":"DirectIndexedWithY", "cycles":"4"},
-		{"opcode":"0xb7", "uop":"LDA", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0xb8", "uop":"CLV", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xb9", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0xba", "uop":"TSX", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xbb", "uop":"TYX", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xbc", "uop":"LDY", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0xbd", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0xbe", "uop":"LDX", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0xbf", "uop":"LDA", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0xc0", "uop":"CPY", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xc1", "uop":"CMP", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0xc2", "uop":"REP", "addr_mode":"Immediate", "cycles":"3"},
-		{"opcode":"0xc3", "uop":"CMP", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0xc4", "uop":"CPY", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xc5", "uop":"CMP", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xc6", "uop":"DEC", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0xc7", "uop":"CMP", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0xc8", "uop":"INY", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xc9", "uop":"CMP", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xca", "uop":"DEX", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xcb", "uop":"WAI", "addr_mode":"Implied", "cycles":"3"},
-		{"opcode":"0xcc", "uop":"CPY", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xcd", "uop":"CMP", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xce", "uop":"DEC", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0xcf", "uop":"CMP", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0xd0", "uop":"BNE", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0xd1", "uop":"CMP", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0xd2", "uop":"CMP", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0xd3", "uop":"CMP", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0xd4", "uop":"PEI", "addr_mode":"Stack", "cycles":"6"},
-		{"opcode":"0xd5", "uop":"CMP", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0xd6", "uop":"DEC", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0xd7", "uop":"CMP", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0xd8", "uop":"CLD", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xd9", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0xda", "uop":"PHX", "addr_mode":"Stack", "cycles":"3"},
-		{"opcode":"0xdb", "uop":"STP", "addr_mode":"Implied", "cycles":"3"},
-		{"opcode":"0xdc", "uop":"JML", "addr_mode":"AbsoluteIndirect", "cycles":"6"},
-		{"opcode":"0xdd", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0xde", "uop":"DEC", "addr_mode":"AbsoluteIndexedWithX", "cycles":"7"},
-		{"opcode":"0xdf", "uop":"CMP", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"},
-		{"opcode":"0xe0", "uop":"CPX", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xe1", "uop":"SBC", "addr_mode":"DirectIndexedIndirect", "cycles":"6"},
-		{"opcode":"0xe2", "uop":"SEP", "addr_mode":"Immediate", "cycles":"3"},
-		{"opcode":"0xe3", "uop":"SBC", "addr_mode":"StackRelative", "cycles":"4"},
-		{"opcode":"0xe4", "uop":"CPX", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xe5", "uop":"SBC", "addr_mode":"Direct", "cycles":"3"},
-		{"opcode":"0xe6", "uop":"INC", "addr_mode":"Direct", "cycles":"5"},
-		{"opcode":"0xe7", "uop":"SBC", "addr_mode":"DirectIndirectLong", "cycles":"6"},
-		{"opcode":"0xe8", "uop":"INX", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xe9", "uop":"SBC", "addr_mode":"Immediate", "cycles":"2"},
-		{"opcode":"0xea", "uop":"NOP", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xeb", "uop":"XBA", "addr_mode":"Implied", "cycles":"3"},
-		{"opcode":"0xec", "uop":"CPX", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xed", "uop":"SBC", "addr_mode":"Absolute", "cycles":"4"},
-		{"opcode":"0xee", "uop":"INC", "addr_mode":"Absolute", "cycles":"6"},
-		{"opcode":"0xef", "uop":"SBC", "addr_mode":"AbsoluteLong", "cycles":"5"},
-		{"opcode":"0xf0", "uop":"BEQ", "addr_mode":"ProgramCounterRelative", "cycles":"2"},
-		{"opcode":"0xf1", "uop":"SBC", "addr_mode":"DirectIndirectIndexed", "cycles":"5"},
-		{"opcode":"0xf2", "uop":"SBC", "addr_mode":"DirectIndirect", "cycles":"5"},
-		{"opcode":"0xf3", "uop":"SBC", "addr_mode":"StackRelativeIndirectIndexed", "cycles":"7"},
-		{"opcode":"0xf4", "uop":"PEA", "addr_mode":"Stack", "cycles":"5"},
-		{"opcode":"0xf5", "uop":"SBC", "addr_mode":"DirectIndexedWithX", "cycles":"4"},
-		{"opcode":"0xf6", "uop":"INC", "addr_mode":"DirectIndexedWithX", "cycles":"6"},
-		{"opcode":"0xf7", "uop":"SBC", "addr_mode":"DirectIndirectLongIndexed", "cycles":"6"},
-		{"opcode":"0xf8", "uop":"SED", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xf9", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithY", "cycles":"4"},
-		{"opcode":"0xfa", "uop":"PLX", "addr_mode":"Stack", "cycles":"4"},
-		{"opcode":"0xfb", "uop":"XCE", "addr_mode":"Implied", "cycles":"2"},
-		{"opcode":"0xfc", "uop":"JSR", "addr_mode":"AbsoluteIndexedIndirect", "cycles":"8"},
-		{"opcode":"0xfd", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithX", "cycles":"4"},
-		{"opcode":"0xfe", "uop":"INC", "addr_mode":"AbsoluteIndexedWithX", "cycles":"7"},
-		{"opcode":"0xff", "uop":"SBC", "addr_mode":"AbsoluteLongIndexed", "cycles":"5"}
-	]
+	"ADC" : {
+		"in" : ["a", "o", "c"],
+		"op" : "r = a + o + c;",
+		"out" : {
+			"a" : "r",
+			"n" : "n",
+			"v" : "v",
+			"c" : "c"
+		}
+	},
+	"AND" : {
+		"in" : ["a", "o"],
+		"op" : "r = a & o;",
+		"out" : {
+			"a" : "r",
+			"n" : "n",
+			"z" : "z"
+		}
+	},
+	"ASL" : {
+		"in"  : ["o"],
+		"op" : " o << 1;",
+		"out" : {
+			"o": "r",
+			"c" : "c"
+		}
+	},
+	"BCC" : {
+		"in" : ["o", "c", "pc"],
+		"op" : "if (o == 0) ? r = pc : r = pc + o;",
+		"out" : {
+			"pc" : "r"
+		}
+	},
+	"BCS" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BEQ" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BIT" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BMI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BNE" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BPL" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BRA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BRK" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BRL" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BVC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"BVS" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CLC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CLD" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CLI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CLV" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CMP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"COP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CPX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"CPY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"DEC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"DEX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"DEY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"EOR" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"INC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"INX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"INY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"JML" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"JMP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"JSL" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"JSR" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"LDA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"LDX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"LDY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"LSR" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"MVN" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"MVP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"NOP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"ORA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PEA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PEI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PER" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHB" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHD" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHK" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PHY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLB" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLD" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"PLY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"REP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"ROL" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"ROR" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"RTI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"RTL" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"RTS" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"SBC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"SEC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"SED" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"SEI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"SEP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"STA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"STP" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"STX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"STY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"STZ" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TAX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TAY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TCD" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TCS" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TDC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TRB" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TSB" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TSC" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TSX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TXA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TXS" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TXY" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TYA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"TYX" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"WAI" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"WDM" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"XBA" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	},
+	"XCE" : {
+		"in" : ["o"],
+		"op" : "assert(0);",
+		"out" : {
+
+		}
+	}
 }
