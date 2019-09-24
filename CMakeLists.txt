@@ -18,8 +18,8 @@ endif()
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-set (SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp opcode.cpp generated_decoder.cpp)
-set (HEADER_FILES memory_manager.hpp opcode.hpp register_file.hpp opcode.hpp decoder.hpp)
+set (SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp)
+set (HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp)
 
 add_custom_command (
   OUTPUT generated_opcodes.json
@@ -33,6 +33,11 @@ add_custom_command(
   DEPENDS generated_opcodes.json
 )
 
+add_custom_command(
+  OUTPUT generated_opcodes.cpp 
+  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_uops.py --filename=${CMAKE_SOURCE_DIR}/uops.json > generated_opcodes.cpp
+  DEPENDS ${CMAKE_SOURCE_DIR}/uops.json
+)
 add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
 install(TARGETS emulator DESTINATION bin)
