@@ -19,8 +19,13 @@ endif()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # include_directories(${CMAKE_SOURCE_DIR})
 
-set (SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp)
-set (HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp)
+set (
+  SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp memory_device.cpp cpu.cpp
+)
+
+set (
+  HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp memory_device.hpp cpu.hpp
+)
 
 add_custom_command (
   OUTPUT generated_opcodes.json

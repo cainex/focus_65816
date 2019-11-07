@@ -1,15 +1,13 @@
 #include <iostream>
-#include "decoder.hpp"
+#include "cpu.hpp"
 #include "memory_manager.hpp"
-#include "register_file.hpp"
 
 int main (int argc, char* argv[])
 {
     std::cout << "Initializing!" << std::endl;
 
-    auto rf = std::make_shared<RegisterFile>();
     auto mem = std::make_shared<MemoryManager>();
-    auto dec = std::make_shared<Decoder>(mem, rf);
+    auto cpu = std::make_shared<Cpu>(mem);
 
     std::cout << "Loading memory" << std::endl;
 
@@ -47,9 +45,7 @@ int main (int argc, char* argv[])
     std::cout << "Execute" << std::endl;
     
     for (int i =0; i < 3; i++) {
-        std::cout << "PC[" << std::hex << rf->pc_addr() << std::dec << "] ";
-        auto op = dec->DecodeNext();
-        op->Execute();
+        cpu->Execute();
     }
     mem->Read<uint16_t>(0x2004);
 

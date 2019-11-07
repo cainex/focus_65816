@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <cstdint>
 
 class MemoryDevice
 {
