@@ -54,12 +54,12 @@ uint16_t DirectMode::operand()
     return 0;
 }
 
-uint16_t DirectIndexedXMode::operand()
+uint16_t DirectIndexedWithXMode::operand()
 {
     return 0;
 }
 
-uint16_t DirectIndexedYMode::operand()
+uint16_t DirectIndexedWithYMode::operand()
 {
     return 0;
 }
@@ -89,12 +89,12 @@ uint16_t DirectIndirectLongIndexedMode::operand()
     return 0;
 }
 
-uint16_t AbsoluteIndexedXMode::operand()
+uint16_t AbsoluteIndexedWithXMode::operand()
 {
     return 0;
 }
 
-uint16_t AbsoluteIndexedYMode::operand()
+uint16_t AbsoluteIndexedWithYMode::operand()
 {
     return 0;
 }
@@ -175,11 +175,11 @@ void DirectMode::operand(const uint16_t &op)
 {
 }
 
-void DirectIndexedXMode::operand(const uint16_t &op)
+void DirectIndexedWithXMode::operand(const uint16_t &op)
 {
 }
 
-void DirectIndexedYMode::operand(const uint16_t &op)
+void DirectIndexedWithYMode::operand(const uint16_t &op)
 {
 }
 
@@ -203,11 +203,11 @@ void DirectIndirectLongIndexedMode::operand(const uint16_t &op)
 {
 }
 
-void AbsoluteIndexedXMode::operand(const uint16_t &op)
+void AbsoluteIndexedWithXMode::operand(const uint16_t &op)
 {
 }
 
-void AbsoluteIndexedYMode::operand(const uint16_t &op)
+void AbsoluteIndexedWithYMode::operand(const uint16_t &op)
 {
 }
 

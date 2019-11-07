@@ -108,23 +108,23 @@ public:
     virtual void operand(const uint16_t &op);
 };
 
-class DirectIndexedXMode: public AddressingMode
+class DirectIndexedWithXMode: public AddressingMode
 {
 public:
-    DirectIndexedXMode() = delete;
-    DirectIndexedXMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
-    ~DirectIndexedXMode() {}    
+    DirectIndexedWithXMode() = delete;
+    DirectIndexedWithXMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
+    ~DirectIndexedWithXMode() {}    
 
     virtual uint16_t operand();
     virtual void operand(const uint16_t &op);
 };
 
-class DirectIndexedYMode: public AddressingMode
+class DirectIndexedWithYMode: public AddressingMode
 {
 public:
-    DirectIndexedYMode() = delete;
-    DirectIndexedYMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
-    ~DirectIndexedYMode() {}    
+    DirectIndexedWithYMode() = delete;
+    DirectIndexedWithYMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
+    ~DirectIndexedWithYMode() {}    
 
     virtual uint16_t operand();
     virtual void operand(const uint16_t &op);
@@ -185,23 +185,23 @@ public:
     virtual void operand(const uint16_t &op);
 };
 
-class AbsoluteIndexedXMode: public AddressingMode
+class AbsoluteIndexedWithXMode: public AddressingMode
 {
 public:
-    AbsoluteIndexedXMode() = delete;
-    AbsoluteIndexedXMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
-    ~AbsoluteIndexedXMode() {}    
+    AbsoluteIndexedWithXMode() = delete;
+    AbsoluteIndexedWithXMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
+    ~AbsoluteIndexedWithXMode() {}    
 
     virtual uint16_t operand();
     virtual void operand(const uint16_t &op);
 };
 
-class AbsoluteIndexedYMode: public AddressingMode
+class AbsoluteIndexedWithYMode: public AddressingMode
 {
 public:
-    AbsoluteIndexedYMode() = delete;
-    AbsoluteIndexedYMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
-    ~AbsoluteIndexedYMode() {}    
+    AbsoluteIndexedWithYMode() = delete;
+    AbsoluteIndexedWithYMode(std::shared_ptr<MemoryManager> mem, std::shared_ptr<RegisterFile> reg) : AddressingMode(mem, reg) {}
+    ~AbsoluteIndexedWithYMode() {}    
 
     virtual uint16_t operand();
     virtual void operand(const uint16_t &op);

@@ -137,6 +137,18 @@ public:
     void clrC() { setStat(C_POS, false); }
     void clrE() { m_e = false; }
 
+    void n(bool v) { setStat(N_POS, v); }
+    void v(bool v) { setStat(V_POS, v); }
+    void m(bool v) { setStat(M_POS, v); }
+    void b(bool v) { setStat(B_POS, v); }
+    void ix(bool v) { setStat(X_POS, v); }
+    void d(bool v) { setStat(D_POS, v); }
+    void i(bool v) { setStat(I_POS, v); }
+    void z(bool v) { setStat(Z_POS, v); }
+    void c(bool v) { setStat(C_POS, v); }
+    void e(bool v) { m_e = v; }
+
+
 protected:
     Reg m_a;
     Reg m_x;

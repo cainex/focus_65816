@@ -1,6 +1,10 @@
+
+
 ADC|a+m+c->a|nv----zc
 AND|a^m->a|n-----z-
 ASL|a<<1->a|n-----zc
 BCC|if(c==0)branch(m)|--------
 BCS|if(c==1)branch(m)|--------
 BEQ|if(z==1)branch(m)|--------
+BIT|A^M|mm----z-
+BMI|if(n==0)branch(m)|--------

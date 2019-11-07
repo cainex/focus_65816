@@ -7,7 +7,7 @@
 			"out" : {
 				"a" : "r",
 				"n" : "get_n(r)",
-				"v" : "(a ^ r) & (o ^ r) & 0x8000 ? m_reg->setV() : m_reg->clrV()",
+				"v" : "(a ^ r) & (o ^ r) & 0x8000",
 				"c" : "get_c(r)"
 			}
 		},
@@ -33,65 +33,67 @@
 		{
 			"uop" : "BCC",
 			"in" : ["o", "c", "pc"],
-			"op" : "if (o == 0) ? r = pc : r = pc + o;",
+			"op" : "if (c == 0) r = pc + o; else r = pc;",
 			"out" : {
 				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BCS",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "c", "pc"],
+			"op" : "if (c == 1) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BEQ",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "z", "pc"],
+			"op" : "if (z == 1) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BIT",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["a", "o"],
+			"op" : "r = a & o;",
 			"out" : {
-	
+				"z" : "get_z(r)",
+				"n" : "m_reg->m() ? (r>>7)&0x1 : (r>>15)&0x1",
+				"v" : "m_reg->m() ? (r>>6)&0x1 : (r>>14)&0x1"
 			}
 		},
 		{
 			"uop" : "BMI",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "n", "pc"],
+			"op" : "if (n == 1) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BNE",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "z", "pc"],
+			"op" : "if (z == 0) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BPL",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "n", "pc"],
+			"op" : "if (n == 0) r = pc + 0; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BRA",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "pc"],
+			"op" : "r = pc + o;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
@@ -104,10 +106,10 @@
 		},
 		{
 			"uop" : "BRL",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "pc"],
+			"op" : "r = pc + o;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
@@ -281,9 +283,11 @@
 		{
 			"uop" : "LDA",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o;",
 			"out" : {
-	
+				"a" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
@@ -560,10 +564,10 @@
 		},
 		{
 			"uop" : "STA",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["a", "o"],
+			"op" : "r = a;",
 			"out" : {
-	
+				"o" : "r"
 			}
 		},
 		{
