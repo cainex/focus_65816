@@ -13,9 +13,9 @@ Cpu(std::shared_ptr<MemoryManager> mem);
 void Execute();
 
 protected:
-std::shared_ptr<RegisterFile> _rf;
-std::shared_ptr<MemoryManager> _mem;
-std::shared_ptr<Decoder> _dec;
+std::shared_ptr<RegisterFile> m_rf;
+std::shared_ptr<MemoryManager> m_mem;
+std::shared_ptr<Decoder> m_dec;
 
 
 };

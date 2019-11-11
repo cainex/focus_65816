@@ -1,13 +1,13 @@
 #include "cpu.hpp"
 #include <iostream>
 
-Cpu::Cpu()  : _rf(std::make_shared<RegisterFile>()), _mem(std::make_shared<MemoryManager>()), _dec(std::make_shared<Decoder>(_mem, _rf))
+Cpu::Cpu()  : m_rf(std::make_shared<RegisterFile>()), m_mem(std::make_shared<MemoryManager>()), m_dec(std::make_shared<Decoder>(m_mem, m_rf))
 {
 
 }
 
 Cpu::Cpu(std::shared_ptr<MemoryManager> mem) :
-    _rf(std::make_shared<RegisterFile>()), _mem(move(mem)), _dec(std::make_shared<Decoder>(_mem, _rf))
+    m_rf(std::make_shared<RegisterFile>()), m_mem(move(mem)), m_dec(std::make_shared<Decoder>(m_mem, m_rf))
 {
 
 }
@@ -16,7 +16,7 @@ Cpu::~Cpu() {}
 
 void Cpu::Execute()
 {
-    std::cout << "CPU - PC[" << std::hex << _rf->pc_addr() << std::dec << "] ";
-    auto op = _dec->DecodeNext();
+    std::cout << "CPU - PC[" << std::hex << m_rf->pc_addr() << std::dec << "] ";
+    auto op = m_dec->DecodeNext();
     op->Execute();
 }

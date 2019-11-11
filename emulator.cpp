@@ -1,53 +1,52 @@
 #include <iostream>
+#include <memory>
 #include "cpu.hpp"
 #include "memory_manager.hpp"
+#include "memory.hpp"
+#include "binary_loader.hpp"
+#include <cxxopts.hpp>
 
 int main (int argc, char* argv[])
 {
+
+    cxxopts::Options options(argv[0], "Focus 65c816 simulator");
+    options.add_options()
+        ("help", "print help")
+        ("d,debug", "Enable debugging")
+        ("f,file", "Filename of binary to load", cxxopts::value<std::string>()->default_value(std::string("test.out")));
+    auto result = options.parse(argc, argv);
+
+    if (result.count("help")) {
+        std::cout << options.help({""}) << std::endl;
+        exit(0);
+    }
     std::cout << "Initializing!" << std::endl;
 
     auto mem = std::make_shared<MemoryManager>();
+    auto lmem = std::make_shared<Memory>(1<<24, 0);
+    mem->AddDevice(std::static_pointer_cast<MemoryDevice>(lmem));
     auto cpu = std::make_shared<Cpu>(mem);
 
-    std::cout << "Loading memory" << std::endl;
+    auto loader = std::make_shared<BinaryLoader>(mem);
 
-// 000000r 1               .P816
-// 000000r 1               .ORG $0000
-// 000000  1               .CODE
-// 000000  1               test_adc:
-// 000000  1  A9 10            lda #$0010
-// 000002  1  6D 00 20         adc data
-// 000005  1  8D 04 20         sta out_data
-// 000008  1               .ORG $2000
-// 002000  1               .DATA
-// 002000  1               data:
-// 002000  1  0D 0C 0B 0A      .DWORD $0a0b0c0d
-// 002004  1               out_data:
-// 002004  1  44 33 22 11      .DWORD $11223344
-// 002004  1               
+    try
+    {
+        loader->Load(result["file"].as<std::string>());
+    }
+    catch(const BinaryLoader::FileError& e)
+    {
+        std::cout << e.what() << '\n';
+        exit(0);
+    }
+    
 
-    mem->Write(0x0000, static_cast<uint8_t>(0xa9));
-    mem->Write(0x0001, static_cast<uint8_t>(0x10));
-    mem->Write(0x0002, static_cast<uint8_t>(0x00));
-    mem->Write(0x0003, static_cast<uint8_t>(0x6d));
-    mem->Write(0x0004, static_cast<uint8_t>(0x00));
-    mem->Write(0x0005, static_cast<uint8_t>(0x20));
-    mem->Write(0x0006, static_cast<uint8_t>(0x8d));
-    mem->Write(0x0007, static_cast<uint8_t>(0x04));
-    mem->Write(0x0008, static_cast<uint8_t>(0x20));
-    mem->Write(0x2000, static_cast<uint8_t>(0x01));
-    mem->Write(0x2001, static_cast<uint8_t>(0x02));
-    mem->Write(0x2002, static_cast<uint8_t>(0x03));
-    mem->Write(0x2003, static_cast<uint8_t>(0x04));
-
-
-    mem->Read<uint16_t>(0x2004);
+    mem->Read<uint16_t>(0x52);
     std::cout << "Execute" << std::endl;
     
     for (int i =0; i < 3; i++) {
         cpu->Execute();
     }
-    mem->Read<uint16_t>(0x2004);
+    mem->Read<uint16_t>(0x52);
 
     exit(0);
 

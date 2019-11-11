@@ -2,11 +2,13 @@
 
 #include <cstdint>
 #include <memory>
+#include <vector>
+#include "memory_device.hpp"
 
 class MemoryManager
 {
 public:
-    MemoryManager() : m_size(1<<24), m_mem(new uint8_t[1<<24]) {}
+    MemoryManager() {}
     ~MemoryManager() {}
 
     virtual bool Read(const uint32_t &address, uint8_t &data);
@@ -16,7 +18,9 @@ public:
     bool Write(const uint32_t &address, const uint8_t &data);
     bool Write(const uint32_t &address, const uint16_t &data);
 
+    bool AddDevice(std::shared_ptr< MemoryDevice> device);
+    std::shared_ptr<MemoryDevice> GetDevice(const uint32_t &address);
+
 protected:
-    uint32_t m_size;
-    std::unique_ptr<uint8_t[]> m_mem;
+    std::vector< std::shared_ptr< MemoryDevice > > m_devices;
 };

@@ -1,6 +1,11 @@
 #include "memory_device.hpp"
 
-MemoryDevice::MemoryDevice() 
+MemoryDevice::MemoryDevice() : m_size(1<<24), m_base(0)
+{
+
+}
+
+MemoryDevice::MemoryDevice(uint32_t size, uint32_t base) : m_size(size), m_base(base)
 {
 
 }

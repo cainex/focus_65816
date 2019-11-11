@@ -1,10 +1,15 @@
 #include "memory_manager.hpp"
 #include <iostream>
+#include <algorithm>
 
 bool MemoryManager::Read(const uint32_t &address, uint8_t &data)
 {
-    data = m_mem[address];
-    return true;
+    std::shared_ptr<MemoryDevice> dev = std::move(GetDevice(address));
+    if (dev == nullptr) {
+        return false;
+    }
+
+    return dev->Read(address, data);
 }
 
 template<typename T>
@@ -16,29 +21,66 @@ T MemoryManager::Read(const uint32_t &address)
 template<>
 uint8_t MemoryManager::Read(const uint32_t &address)
 {
-    std::cout << "[" << std::hex << address << "] -> " << static_cast<uint16_t>(m_mem[address]) << std::dec << std::endl;
-    return m_mem[address];
+    std::shared_ptr<MemoryDevice> dev = std::move(GetDevice(address));
+    if (dev == nullptr) {
+        return false;
+    }
+
+    uint8_t data;
+    dev->Read(address, data);
+
+    return data;
 }
 
 template<>
 uint16_t MemoryManager::Read(const uint32_t &address)
 {
-    std::cout << "[" << std::hex << address << "] -> " << (static_cast<uint16_t>(m_mem[address+1])<<8 | static_cast<uint16_t>(m_mem[address])) << std::dec << std::endl;
-    return static_cast<uint16_t>(m_mem[address+1])<<8 | static_cast<uint16_t>(m_mem[address]);
+    std::shared_ptr<MemoryDevice> dev = std::move(GetDevice(address));
+    if (dev == nullptr) {
+        return false;
+    }
+
+    uint16_t data;
+    dev->Read(address, data);
+
+    return data;
 }
     
 
 bool MemoryManager::Write(const uint32_t &address, const uint8_t &data)
 {
-    m_mem[address] = data;
-    std::cout << "[" << std::hex << address << "] <- " << static_cast<uint16_t>(data) << std::dec << std::endl;
-    return true;
+    std::shared_ptr<MemoryDevice> dev = std::move(GetDevice(address));
+    if (dev == nullptr) {
+        return false;
+    }
+
+    return dev->Write(address, data);
 }
 
 bool MemoryManager::Write(const uint32_t &address, const uint16_t &data)
 {
-    m_mem[address] = static_cast<uint8_t>(data);
-    m_mem[address+1] = static_cast<uint8_t>(data>>8);
-    std::cout << "[" << std::hex << address << "] <- " << data << std::dec << std::endl;
-    return true;
+    std::shared_ptr<MemoryDevice> dev = std::move(GetDevice(address));
+    if (dev == nullptr) {
+        return false;
+    }
+
+    return dev->Write(address, data);
+}
+
+bool MemoryManager::AddDevice(std::shared_ptr< MemoryDevice > device)
+{
+    m_devices.push_back(device);
+}
+
+std::shared_ptr<MemoryDevice> MemoryManager::GetDevice(const uint32_t &address)
+{
+    std::shared_ptr<MemoryDevice> found_device;
+
+    std::for_each(m_devices.begin(), m_devices.end(), [&found_device, address](std::shared_ptr<MemoryDevice> &d) {
+        if (d->Contains(address)) {
+            found_device = d;
+        } 
+    });
+
+    return found_device;
 }

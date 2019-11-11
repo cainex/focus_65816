@@ -91,12 +91,24 @@ uint16_t DirectIndirectLongIndexedMode::operand()
 
 uint16_t AbsoluteIndexedWithXMode::operand()
 {
-    return 0;
+    uint32_t effectiveAddress;
+
+    effectiveAddress = static_cast<uint32_t>(m_reg->dbr())<<16 | static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    effectiveAddress = static_cast<uint32_t>(m_reg->x());
+    m_reg->pc(m_reg->pc() + 2);
+
+    return m_mem->Read<uint16_t>(effectiveAddress);
 }
 
 uint16_t AbsoluteIndexedWithYMode::operand()
 {
-    return 0;
+    uint32_t effectiveAddress;
+
+    effectiveAddress = static_cast<uint32_t>(m_reg->dbr())<<16 | static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    effectiveAddress = static_cast<uint32_t>(m_reg->y());
+    m_reg->pc(m_reg->pc() + 2);
+
+    return m_mem->Read<uint16_t>(effectiveAddress);
 }
 
 uint16_t AbsoluteLongMode::operand()
@@ -126,7 +138,14 @@ uint16_t AbsoluteIndirectMode::operand()
 
 uint16_t AbsoluteIndexedIndirectMode::operand()
 {
-    return 0;
+    uint32_t effectiveAddress;
+
+    effectiveAddress = static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    effectiveAddress += static_cast<uint32_t>(m_reg->x());
+    effectiveAddress += static_cast<uint32_t>(m_reg->pbr())<<16;
+    m_reg->pc(m_reg->pc() + 2);
+
+    return effectiveAddress;
 }
 
 uint16_t BlockMoveMode::operand()
@@ -141,7 +160,8 @@ void AbsoluteMode::operand(const uint16_t &op)
 {
     uint32_t effectiveAddress;
 
-    effectiveAddress = static_cast<uint32_t>(m_reg->dbr())<<16 | static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    effectiveAddress = static_cast<uint32_t>(m_mem->Read<uint16_t>(m_reg->pc()));
+    effectiveAddress = effectiveAddress | static_cast<uint32_t>(m_reg->dbr())<<16;
     m_reg->pc(m_reg->pc() + 2);
 
     m_mem->Write(effectiveAddress, op);

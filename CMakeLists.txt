@@ -14,17 +14,25 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
     "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   set(warnings "-Wall -Wextra -Werror -Wc++11-extensions")
   set(CMAKE_CXX_FLAGS "-std=c++17") 
-endif()
+  set(CMAKE_CXX_FLAGS_DEBUG  "-g")
+
+  endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # include_directories(${CMAKE_SOURCE_DIR})
 
+find_package (cxxopts)
+if (CXXOPTS_FOUND)
+  include_directories(${CXXOPTS_INCLUDE_DIRS})
+  target_link_libraries (emulator ${BZIP2_LIBRARIES})
+endif (CXXOPTS_FOUND)
+
 set (
-  SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp memory_device.cpp cpu.cpp
+  SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp memory_device.cpp cpu.cpp memory.cpp binary_loader.cpp
 )
 
 set (
-  HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp memory_device.hpp cpu.hpp
+  HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp memory_device.hpp cpu.hpp memory.hpp binary_loader.hpp
 )
 
 add_custom_command (
