@@ -19,7 +19,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
   endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 find_package (cxxopts)
 if (CXXOPTS_FOUND)
@@ -28,30 +28,19 @@ if (CXXOPTS_FOUND)
 endif (CXXOPTS_FOUND)
 
 set (
-  SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp memory_device.cpp cpu.cpp memory.cpp binary_loader.cpp
+  SOURCE_FILES src/emulator.cpp src/memory_manager.cpp src/addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp src/memory_device.cpp src/cpu.cpp src/memory.cpp src/binary_loader.cpp
 )
 
 set (
-  HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp memory_device.hpp cpu.hpp memory.hpp binary_loader.hpp
-)
-
-add_custom_command (
-  OUTPUT generated_opcodes.json
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_uops_json.py --filename=${CMAKE_SOURCE_DIR}/opcode_table.txt > generated_opcodes.json
-  DEPENDS ${CMAKE_SOURCE_DIR}/opcode_table.txt ${CMAKE_SOURCE_DIR}/gen_uops_json.py
+  HEADER_FILES src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
 )
 
 add_custom_command(
-  OUTPUT generated_decoder.cpp
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_code.py --filename=generated_opcodes.json > generated_decoder.cpp
-  DEPENDS generated_opcodes.json ${CMAKE_SOURCE_DIR}/gen_code.py
+  OUTPUT generated_decoder.cpp generated_opcodes.cpp generated_opcodes.hpp
+  COMMAND python3 ${CMAKE_SOURCE_DIR}/bin/gen_code.py --filename=${CMAKE_SOURCE_DIR}/defs/uops.json
+  DEPENDS ${CMAKE_SOURCE_DIR}/defs/uops.json ${CMAKE_SOURCE_DIR}/bin/gen_code.py
 )
 
-add_custom_command(
-  OUTPUT generated_opcodes.cpp generated_opcodes.hpp
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_uops.py --filename=${CMAKE_SOURCE_DIR}/uops.json --output=generated_opcodes
-  DEPENDS ${CMAKE_SOURCE_DIR}/uops.json ${CMAKE_SOURCE_DIR}/gen_uops.py
-)
 add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
 install(TARGETS emulator DESTINATION bin)

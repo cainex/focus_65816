@@ -5,11 +5,44 @@ import json
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string("filename", None, "Input definition file")
-flags.DEFINE_string("output", None, "Basename of output files")
+flags.DEFINE_string("decoder_filename", "generated_decoder", "Root filename for decoder")
+flags.DEFINE_string("opcodes_filename", "generated_opcodes", "Root filename for opcodes")
 
 # Required flag.
 flags.mark_flag_as_required("filename")
-flags.mark_flag_as_required("output")
+
+decoder_preamble = """
+#include "decoder.hpp"
+#include <iostream>
+
+std::shared_ptr<OpCode> Decoder::DecodeNext()
+{
+    uint8_t uop = m_mem->Read<uint8_t>(m_reg->pc_addr());
+
+"""
+
+decoder_postable = """
+    else {
+        std::cout << "UNKNOW UOP : " << std::hex << static_cast<uint32_t>(uop) << std::dec << std::endl;
+        exit(1);
+    }
+
+}"""
+
+uop_template_string = """
+    {% if first == True %} else {% endif %} if (uop == {{ opcode }} ) { // {{ uop }} {{ addr_mode }}
+        std::cout << "{{ uop }} {{ addr_mode_string }}" << std::endl;
+        std::shared_ptr<AddressingMode> addressingMode(new {{addr_mode}}Mode(m_mem, m_reg));
+        std::shared_ptr<OpCode> opCode(new {{ uop }}(addressingMode, m_mem, m_reg));
+        m_reg->pc(m_reg->pc() + 1);
+        return opCode;
+    }
+"""
+
+uop_template = Template(uop_template_string)
+
+def render_uop(first, uop):
+    return uop_template.render(first=first, opcode=uop['opcode'], uop=uop['uop'], addr_mode=uop['addr_mode'], addr_mode_string=uop['addr_mode_string'])
 
 header_preamble = """
 #pragma once
@@ -105,6 +138,7 @@ def render_operation(next_uop):
         else:
             operation = operation + "        m_reg->{}({});\n".format(output[0], output[1])
 
+    operation = operation + "        return true;\n"
     return operation
 
 def render_hdr_uop(next_uop):
@@ -112,7 +146,29 @@ def render_hdr_uop(next_uop):
 
 def render_src_uop(next_uop):
     return src_uop_template.render(uop=next_uop['uop'], op=render_operation(next_uop))
-    
+
+def generate_decoder(uops):
+    with open("{}.cpp".format(FLAGS.decoder_filename), "w") as src:
+        src.write(decoder_preamble)
+        first = False
+        for uop in uops['uop_decode']:
+            src.write(render_uop(first, uop))
+            first = True
+        src.write(decoder_postable)
+
+def generate_uops(uops):
+    with open("{}.hpp".format(FLAGS.opcodes_filename), "w") as hdr:
+        hdr.write(header_preamble)
+        for uop in uops['uops_operation']:
+            hdr.write(render_hdr_uop(uop))
+        hdr.write(header_postamble)
+        
+    with open("{}.cpp".format(FLAGS.opcodes_filename), "w") as src:
+        src.write(source_preamble)
+        for uop in uops['uops_operation']:
+            src.write(render_src_uop(uop))
+        src.write(source_postamble)
+
 def main(argv):
     del argv  # Unused.
 
@@ -121,17 +177,8 @@ def main(argv):
     with open(FLAGS.filename) as fp:
         uops = json.load(fp)
 
-    with open("{}.hpp".format(FLAGS.output), "w") as hdr:
-        hdr.write(header_preamble)
-        for uop in uops['uops']:
-            hdr.write(render_hdr_uop(uop))
-        hdr.write(header_postamble)
-        
-    with open("{}.cpp".format(FLAGS.output), "w") as src:
-        src.write(source_preamble)
-        for uop in uops['uops']:
-            src.write(render_src_uop(uop))
-        src.write(source_postamble)
+    generate_decoder(uops)
+    generate_uops(uops)
     
 if __name__ == '__main__':
     app.run(main)
