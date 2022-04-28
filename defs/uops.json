@@ -372,58 +372,60 @@
 		},
 		{
 			"uop" : "BVC",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "v", "pc"],
+			"op" : "if (v == 0) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "BVS",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "v", "pc"],
+			"op" : "if (v == 1) r = pc + o; else r = pc;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
 			"uop" : "CLC",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "c"],
+			"op" : "r = 0;",
 			"out" : {
-	
+				"c" : "r"
 			}
 		},
 		{
 			"uop" : "CLD",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "d"],
+			"op" : "r = 0;",
 			"out" : {
-	
+				"d" : "r"
 			}
 		},
 		{
 			"uop" : "CLI",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "i"],
+			"op" : "r = 0;",
 			"out" : {
-	
+				"i" : "r"
 			}
 		},
 		{
 			"uop" : "CLV",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "v"],
+			"op" : "r = 0;",
 			"out" : {
-	
+				"v" : "r"
 			}
 		},
 		{
 			"uop" : "CMP",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "a"],
+			"op" : "r = a - o;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
 			}
 		},
 		{
@@ -436,74 +438,85 @@
 		},
 		{
 			"uop" : "CPX",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "x"],
+			"op" : "r = x - o;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
 			}
 		},
 		{
 			"uop" : "CPY",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "y"],
+			"op" : "r = y - o;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
 			}
 		},
 		{
 			"uop" : "DEC",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o - 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "DEX",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["x"],
+			"op" : "r = x - 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "DEY",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["y"],
+			"op" : "r = y - 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "EOR",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["o", "a"],
+			"op" : "r = a ^ o;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "INC",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o + 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
 			}
 		},
 		{
 			"uop" : "INX",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["x"],
+			"op" : "r = x + 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "INY",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["y"],
+			"op" : "r = y + 1;",
 			"out" : {
-	
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
@@ -551,9 +564,11 @@
 		{
 			"uop" : "LDX",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o;",
 			"out" : {
-	
+				"x" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
 			}
 		},
 		{
@@ -561,7 +576,9 @@
 			"in" : ["o"],
 			"op" : "assert(0);",
 			"out" : {
-	
+				"y" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
 			}
 		},
 		{

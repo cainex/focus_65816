@@ -117,6 +117,10 @@ def render_operation(next_uop):
             operation = operation + "        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());\n"
         elif input == 'a':
             operation = operation + "        uint32_t a = static_cast<uint32_t>(m_reg->a());\n"
+        elif input == 'x':
+            operation = operation + "        uint32_t x = static_cast<uint32_t>(m_reg->x());\n"
+        elif input == 'y':
+            operation = operation + "        uint32_t y = static_cast<uint32_t>(m_reg->y());\n"
         elif input == 'c':
             operation = operation + "        uint32_t c = m_reg->c() ? 1 : 0;\n"
         elif input == 'n':
@@ -125,6 +129,8 @@ def render_operation(next_uop):
             operation = operation + "        uint32_t z = m_reg->z() ? 1 : 0;\n"
         elif input == 'm':
             operation = operation + "        uint32_t m = m_reg->m() ? 1 : 0;\n"
+        elif input == 'v':
+            operation = operation + "        uint32_t v = m_reg->v() ? 1 : 0;\n"
         elif input == 'pc':
             operation = operation + "        uint32_t pc = m_reg->pc();"
 
