@@ -34,7 +34,7 @@ set (
 )
 
 set (
-  HEADER_FILES src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
+  HEADER_FILES deps/cxxopts/include/cxxopts.hpp src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
 )
 
 CreateVirtualEnvironment(
@@ -53,3 +53,7 @@ add_custom_command(
 add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
 install(TARGETS emulator DESTINATION bin)
+
+set_property(TARGET emulator PROPERTY CXX_STANDARD 17)
+set_property(TARGET emulator PROPERTY CXX_STANDARD_REQUIRED ON)
+

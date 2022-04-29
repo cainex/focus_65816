@@ -22,15 +22,13 @@ std::shared_ptr<OpCode> Decoder::DecodeNext()
 """
 
 decoder_postable = """
-    else {
-        std::cout << "UNKNOW UOP : " << std::hex << static_cast<uint32_t>(uop) << std::dec << std::endl;
-        exit(1);
-    }
+    std::cout << "UNKNOW UOP : " << std::hex << static_cast<uint32_t>(uop) << std::dec << std::endl;
+    exit(1);
 
 }"""
 
 uop_template_string = """
-    {% if first == True %} else {% endif %} if (uop == {{ opcode }} ) { // {{ uop }} {{ addr_mode }}
+    if (uop == {{ opcode }} ) { // {{ uop }} {{ addr_mode }}
         std::cout << "{{ uop }} {{ addr_mode_string }}" << std::endl;
         std::shared_ptr<AddressingMode> addressingMode(new {{addr_mode}}Mode(m_mem, m_reg));
         std::shared_ptr<OpCode> opCode(new {{ uop }}(addressingMode, m_mem, m_reg));
@@ -132,7 +130,7 @@ def render_operation(next_uop):
         elif input == 'v':
             operation = operation + "        uint32_t v = m_reg->v() ? 1 : 0;\n"
         elif input == 'pc':
-            operation = operation + "        uint32_t pc = m_reg->pc();"
+            operation = operation + "        uint32_t pc = m_reg->pc();\n"
 
     operation = operation + "        uint32_t r;\n\n"
 
