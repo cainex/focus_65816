@@ -132,6 +132,11 @@ def render_operation(next_uop):
         elif input == 'pc':
             operation = operation + "        uint32_t pc = m_reg->pc();\n"
 
+    # iterate through internal variables if internal exists in next_uop
+    if 'internal' in next_uop:
+        for var in next_uop['internal']:
+            operation = operation + "        uint32_t " + var + ";\n"
+
     operation = operation + "        uint32_t r;\n\n"
 
     operation = operation + "        " + next_uop['op'] + "\n\n"

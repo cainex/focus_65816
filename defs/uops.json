@@ -574,7 +574,7 @@
 		{
 			"uop" : "LDY",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o;",
 			"out" : {
 				"y" : "r",
 				"n" : "get_n(r)",
@@ -584,9 +584,12 @@
 		{
 			"uop" : "LSR",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"internal" : ["u"],
+			"op" : "u = o & 0x1; r = o >> 1;",
 			"out" : {
-	
+				"n" : "0",
+				"z" : "get_z(r)",
+				"c" : "u"
 			}
 		},
 		{
