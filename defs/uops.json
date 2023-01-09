@@ -522,9 +522,9 @@
 		{
 			"uop" : "JML",
 			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "r = o;",
 			"out" : {
-	
+				"pc" : "r"
 			}
 		},
 		{
@@ -610,214 +610,242 @@
 		},
 		{
 			"uop" : "NOP",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "",
 			"out" : {
 	
 			}
 		},
 		{
 			"uop" : "ORA",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["a", "o"],
+			"op" : "r = a | o;",
 			"out" : {
-	
+				"a" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "PEA",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["a", "o"],
+			"op" : "r = o; m_mem->push(r);",
+			"out" : {}
 		},
 		{
 			"uop" : "PEI",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["a", "o"],
+			"op" : "r = m_mem->read(o); m_mem->push(r);",
+			"out" : {}
 		},
 		{
 			"uop" : "PER",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["a", "r"],
+			"op" : "o = m_mem->read(a + r); m_mem->push(o);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHA",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["a"],
+			"op" : "m_mem->push(a);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHB",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["db"],
+			"op" : "m_mem->push(db);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHD",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["dp"],
+			"op" : "m_mem->push(dp);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHK",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["pb"],
+			"op" : "m_mem->push(pb);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["p"],
+			"op" : "m_mem->push(p);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHX",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["x"],
+			"op" : "m_mem->push(x);",
+			"out" : {}
 		},
 		{
 			"uop" : "PHY",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
+			"in" : ["y"],
+			"op" : "m_mem->push(y);",
+			"out" : {}
 		},
 		{
 			"uop" : "PLA",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "a = m_mem->pull();",
 			"out" : {
-	
+				"a" : "a"
 			}
 		},
 		{
 			"uop" : "PLB",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "db = m_mem->pull();",
 			"out" : {
-	
+				"db" : "db"
 			}
 		},
 		{
 			"uop" : "PLD",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
+			"in" : [],
+			"op" : "dp = m_mem->pull();",
+			"out": {
+				"dp" : "dp"
 			}
 		},
 		{
 			"uop" : "PLP",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "p = m_mem->pull();",
 			"out" : {
-	
+				"p" : "p"
 			}
 		},
 		{
 			"uop" : "PLX",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "x = m_mem->pull();",
 			"out" : {
-	
+				"x" : "x"
 			}
 		},
 		{
 			"uop" : "PLY",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "y = m_mem->pull();",
 			"out" : {
-	
+				"y" : "y"
 			}
 		},
 		{
 			"uop" : "REP",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["m"],
+			"op" : "p &= ~m;",
 			"out" : {
-	
+				"p" : "p"
 			}
 		},
 		{
 			"uop" : "ROL",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in"  : ["o"],
+			"op" : "r = (o << 1) | (m_reg->c() ? 1 : 0);",
 			"out" : {
-	
+				"o": "r",
+				"c" : "get_c(r)",
+				"z" : "get_z(r)",
+				"n" : "get_n(r)"
 			}
 		},
 		{
 			"uop" : "ROR",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in"  : ["o"],
+			"op" : "r = (o >> 1) | (m_reg->c() ? 0x8000 : 0);",
 			"out" : {
-	
+				"o": "r",
+				"c" : "o & 1",
+				"z" : "get_z(r)",
+				"n" : "get_n(r)"
 			}
 		},
 		{
 			"uop" : "RTI",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "m_reg->flags(m_mem->read_byte(m_reg->sp())); m_reg->sp(m_reg->sp() + 1); m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);",
+			"in" : ["sp"],
 			"out" : {
-	
+				"sp" : "m_reg->sp()",
+				"pc" : "m_reg->pc()",
+				"flags" : "m_reg->flags()"
 			}
 		},
 		{
 			"uop" : "RTL",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "m_reg->pc(m_mem->read_dword(m_reg->sp())); m_reg->sp(m_reg->sp() + 4);",
+			"in" : ["sp"],
 			"out" : {
-	
+				"sp" : "m_reg->sp()",
+				"pc" : "m_reg->pc()"
 			}
 		},
 		{
 			"uop" : "RTS",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"op" : "m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);",
+			"in" : ["sp"],
 			"out" : {
-	
+				"sp" : "m_reg->sp()",
+				"pc" : "m_reg->pc()"
 			}
 		},
 		{
 			"uop" : "SBC",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : ["a", "o", "c"],
+			"op" : "r = a - o - (1 - c);",
 			"out" : {
-	
+				"a" : "r",
+				"n" : "get_n(r)",
+				"v" : "(a ^ o) & (a ^ r) & 0x8000",
+				"c" : "get_c(r)",
+				"z" : "get_z(r)"
 			}
 		},
 		{
 			"uop" : "SEC",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"in" : [],
+			"op" : "r = 1;",
 			"out" : {
-	
+				"c" : "r"
 			}
 		},
 		{
 			"uop" : "SED",
+			"in" : [],
+			"op" : "r = 1;",
+			"out" : {
+				"d" : "r"
+			}
+		},
+		{
+			"uop" : "SEI",
+			"in" : [],
+			"op" : "r = 1;",
+			"out" : {
+				"i" : "r"
+			}
+		},
+		{
+			"uop" : "SEP",
+			"in" : ["o"],
+			"op" : "r = o;",
+			"out" : {
+				"p" : "r"
+			}
+		},
+		{
+			"uop" : "STA",
+			"in" : ["a"],
+			"op" : "r = a;",
+			"out" : {
+				"o" : "r"
+			}
+		},
+		{
+			"uop" : "STP",
 			"in" : ["o"],
 			"op" : "assert(0);",
 			"out" : {
@@ -825,13 +853,52 @@
 			}
 		},
 		{
-			"uop" : "SEI",
-			"in" : ["o"],
-			"op" : "assert(0);",
+			"uop" : "STX",
+			"in" : ["x"],
+			"op" : "r = x;",
 			"out" : {
-	
+				"o" : "r"
 			}
 		},
+		{
+			"uop" : "STY",
+			"in" : ["y"],
+			"op" : "r = y;",
+			"out" : {
+				"o" : "r"
+			}
+		},
+		{
+			"uop" : "STZ",
+			"in" : ["o"],
+			"op" : "r = 0;",
+			"out" : {
+				"o" : "r"
+			}
+		},
+		{
+			"uop" : "TAX",
+			"in" : ["a"],
+			"op" : "r = a;",
+			"out" : {
+				"x" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "TAY",
+			"in" : ["a"],
+			"op" : "r = a;",
+			"out" : {
+				"y" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "TCD",
+			"in" : ["a"],
 		{
 			"uop" : "SEP",
 			"in" : ["o"],
