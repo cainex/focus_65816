@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project (emulator)
 
+include(CreateVirtualEnvironment.cmake)
+
 set(EMULATOR_MAJOR_VERSION 0)
 set(EMULATOR_MINOR_VERSION 1)
 set(EMULATOR_PATCH_VERSION 0)
@@ -15,43 +17,43 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
   set(warnings "-Wall -Wextra -Werror -Wc++11-extensions")
   set(CMAKE_CXX_FLAGS "-std=c++17") 
   set(CMAKE_CXX_FLAGS_DEBUG  "-g")
-
 endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 find_package (cxxopts)
 if (CXXOPTS_FOUND)
   include_directories(${CXXOPTS_INCLUDE_DIRS})
   target_link_libraries (emulator ${BZIP2_LIBRARIES})
 endif (CXXOPTS_FOUND)
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set (
-  SOURCE_FILES emulator.cpp memory_manager.cpp addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp memory_device.cpp cpu.cpp memory.cpp binary_loader.cpp
+  SOURCE_FILES src/emulator.cpp src/memory_manager.cpp src/addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp src/memory_device.cpp src/cpu.cpp src/memory.cpp src/binary_loader.cpp
 )
 
 set (
-  HEADER_FILES memory_manager.hpp register_file.hpp decoder.hpp generated_opcodes.hpp memory_device.hpp cpu.hpp memory.hpp binary_loader.hpp
+  HEADER_FILES deps/cxxopts/include/cxxopts.hpp src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
 )
 
-add_custom_command (
-  OUTPUT generated_opcodes.json
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_uops_json.py --filename=${CMAKE_SOURCE_DIR}/opcode_table.txt > generated_opcodes.json
-  DEPENDS ${CMAKE_SOURCE_DIR}/opcode_table.txt ${CMAKE_SOURCE_DIR}/gen_uops_json.py
+CreateVirtualEnvironment(
+    venv
+    REQUIREMENTS_TXT ${CMAKE_SOURCE_DIR}/bin/requirements  # optional
+    OUT_PYTHON_EXE PYTHON_EXE
+    OUT_BINARY_DIR PYTHON_BIN_DIR
 )
 
 add_custom_command(
-  OUTPUT generated_decoder.cpp
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_code.py --filename=generated_opcodes.json > generated_decoder.cpp
-  DEPENDS generated_opcodes.json ${CMAKE_SOURCE_DIR}/gen_code.py
+  OUTPUT generated_decoder.cpp generated_opcodes.cpp generated_opcodes.hpp
+  COMMAND ${PYTHON_EXE} ${CMAKE_SOURCE_DIR}/bin/gen_code.py --filename=${CMAKE_SOURCE_DIR}/defs/uops.json
+  DEPENDS ${CMAKE_SOURCE_DIR}/defs/uops.json ${CMAKE_SOURCE_DIR}/bin/gen_code.py venv
 )
 
-add_custom_command(
-  OUTPUT generated_opcodes.cpp generated_opcodes.hpp
-  COMMAND python3 ${CMAKE_SOURCE_DIR}/gen_uops.py --filename=${CMAKE_SOURCE_DIR}/uops.json --output=generated_opcodes
-  DEPENDS ${CMAKE_SOURCE_DIR}/uops.json ${CMAKE_SOURCE_DIR}/gen_uops.py
-)
 add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
 install(TARGETS emulator DESTINATION bin)
+
+set_property(TARGET emulator PROPERTY CXX_STANDARD 17)
+set_property(TARGET emulator PROPERTY CXX_STANDARD_REQUIRED ON)
+

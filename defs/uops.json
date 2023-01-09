@@ -1,5 +1,4 @@
-{
-	"uop_decode": [
+{	"uop_decode": [
 		{"opcode":"0x00", "uop":"BRK", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"7"},
 		{"opcode":"0x01", "uop":"ORA", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
 		{"opcode":"0x02", "uop":"COP", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"7"},
@@ -256,5 +255,775 @@
 		{"opcode":"0xfd", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
 		{"opcode":"0xfe", "uop":"INC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
 		{"opcode":"0xff", "uop":"SBC", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"}
+	],
+
+	"uops_operation" : [
+		{
+			"uop" : "ADC",
+			"in" : ["a", "o", "c"],
+			"op" : "r = a + o + c;",
+			"out" : {
+				"a" : "r",
+				"n" : "get_n(r)",
+				"v" : "(a ^ r) & (o ^ r) & 0x8000",
+				"c" : "get_c(r)"
+			}
+		},
+		{
+			"uop" : "AND",
+			"in" : ["a", "o"],
+			"op" : "r = a & o;",
+			"out" : {
+				"a" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "ASL",
+			"in"  : ["o"],
+			"op" : "r = o << 1;",
+			"out" : {
+				"o": "r",
+				"c" : "get_c(r)"
+			}
+		},
+		{
+			"uop" : "BCC",
+			"in" : ["o", "c", "pc"],
+			"op" : "if (c == 0) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BCS",
+			"in" : ["o", "c", "pc"],
+			"op" : "if (c == 1) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BEQ",
+			"in" : ["o", "z", "pc"],
+			"op" : "if (z == 1) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BIT",
+			"in" : ["a", "o"],
+			"op" : "r = a & o;",
+			"out" : {
+				"z" : "get_z(r)",
+				"n" : "m_reg->m() ? (r>>7)&0x1 : (r>>15)&0x1",
+				"v" : "m_reg->m() ? (r>>6)&0x1 : (r>>14)&0x1"
+			}
+		},
+		{
+			"uop" : "BMI",
+			"in" : ["o", "n", "pc"],
+			"op" : "if (n == 1) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BNE",
+			"in" : ["o", "z", "pc"],
+			"op" : "if (z == 0) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BPL",
+			"in" : ["o", "n", "pc"],
+			"op" : "if (n == 0) r = pc + 0; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BRA",
+			"in" : ["o", "pc"],
+			"op" : "r = pc + o;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BRK",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "BRL",
+			"in" : ["o", "pc"],
+			"op" : "r = pc + o;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BVC",
+			"in" : ["o", "v", "pc"],
+			"op" : "if (v == 0) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "BVS",
+			"in" : ["o", "v", "pc"],
+			"op" : "if (v == 1) r = pc + o; else r = pc;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "CLC",
+			"in" : ["o", "c"],
+			"op" : "r = 0;",
+			"out" : {
+				"c" : "r"
+			}
+		},
+		{
+			"uop" : "CLD",
+			"in" : ["o", "d"],
+			"op" : "r = 0;",
+			"out" : {
+				"d" : "r"
+			}
+		},
+		{
+			"uop" : "CLI",
+			"in" : ["o", "i"],
+			"op" : "r = 0;",
+			"out" : {
+				"i" : "r"
+			}
+		},
+		{
+			"uop" : "CLV",
+			"in" : ["o", "v"],
+			"op" : "r = 0;",
+			"out" : {
+				"v" : "r"
+			}
+		},
+		{
+			"uop" : "CMP",
+			"in" : ["o", "a"],
+			"op" : "r = a - o;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
+			}
+		},
+		{
+			"uop" : "COP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "CPX",
+			"in" : ["o", "x"],
+			"op" : "r = x - o;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
+			}
+		},
+		{
+			"uop" : "CPY",
+			"in" : ["o", "y"],
+			"op" : "r = y - o;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)",
+				"c" : "get_c(r)"
+			}
+		},
+		{
+			"uop" : "DEC",
+			"in" : ["o"],
+			"op" : "r = o - 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "DEX",
+			"in" : ["x"],
+			"op" : "r = x - 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "DEY",
+			"in" : ["y"],
+			"op" : "r = y - 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "EOR",
+			"in" : ["o", "a"],
+			"op" : "r = a ^ o;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "INC",
+			"in" : ["o"],
+			"op" : "r = o + 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
+			}
+		},
+		{
+			"uop" : "INX",
+			"in" : ["x"],
+			"op" : "r = x + 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "INY",
+			"in" : ["y"],
+			"op" : "r = y + 1;",
+			"out" : {
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "JML",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "JMP",
+			"in" : ["o"],
+			"op" : "r = o;",
+			"out" : {
+				"pc" : "r"
+			}
+		},
+		{
+			"uop" : "JSL",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "JSR",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "LDA",
+			"in" : ["o"],
+			"op" : "r = o;",
+			"out" : {
+				"a" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"
+			}
+		},
+		{
+			"uop" : "LDX",
+			"in" : ["o"],
+			"op" : "r = o;",
+			"out" : {
+				"x" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
+			}
+		},
+		{
+			"uop" : "LDY",
+			"in" : ["o"],
+			"op" : "r = o;",
+			"out" : {
+				"y" : "r",
+				"n" : "get_n(r)",
+				"z" : "get_z(r)"	
+			}
+		},
+		{
+			"uop" : "LSR",
+			"in" : ["o"],
+			"internal" : ["u"],
+			"op" : "u = o & 0x1; r = o >> 1;",
+			"out" : {
+				"n" : "0",
+				"z" : "get_z(r)",
+				"c" : "u"
+			}
+		},
+		{
+			"uop" : "MVN",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "MVP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "NOP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "ORA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PEA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PEI",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PER",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHB",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHD",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHK",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PHY",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLB",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLD",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "PLY",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "REP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "ROL",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "ROR",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "RTI",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "RTL",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "RTS",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "SBC",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "SEC",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "SED",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "SEI",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "SEP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "STA",
+			"in" : ["a"],
+			"op" : "r = a;",
+			"out" : {
+				"o" : "r"
+			}
+		},
+		{
+			"uop" : "STP",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "STX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "STY",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "STZ",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TAX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TAY",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TCD",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TCS",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TDC",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TRB",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TSB",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TSC",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TSX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TXA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TXS",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TXY",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TYA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "TYX",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "WAI",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "WDM",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "XBA",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		},
+		{
+			"uop" : "XCE",
+			"in" : ["o"],
+			"op" : "assert(0);",
+			"out" : {
+	
+			}
+		}
+	
 	]
 }

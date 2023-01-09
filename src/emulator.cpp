@@ -4,7 +4,7 @@
 #include "memory_manager.hpp"
 #include "memory.hpp"
 #include "binary_loader.hpp"
-#include <cxxopts.hpp>
+#include "deps/cxxopts/include/cxxopts.hpp">
 
 int main (int argc, char* argv[])
 {

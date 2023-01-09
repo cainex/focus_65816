@@ -32,6 +32,8 @@
 *.app
 
 build/*
+out/*
+.vs/*
 generated_*.cpp
 generated_*.h 
 
@@ -39,3 +41,5 @@ LastTest.log
 CTestCostData.txt
 
 *~
+
+mv_venv/*
