@@ -16,7 +16,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
   set(CMAKE_CXX_FLAGS "-std=c++17") 
   set(CMAKE_CXX_FLAGS_DEBUG  "-g")
 
-  endif()
+endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # include_directories(${CMAKE_SOURCE_DIR})
