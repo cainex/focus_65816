@@ -30,7 +30,7 @@ decoder_postable = """
 uop_template_string = """
     if (uop == {{ opcode }} ) { // {{ uop }} {{ addr_mode }}
         std::cout << "{{ uop }} {{ addr_mode_string }}" << std::endl;
-        std::shared_ptr<AddressingMode> addressingMode(new {{addr_mode}}Mode(m_mem, m_reg));
+        std::shared_ptr<AddressingMode> addressingMode(new {{addr_mode}}_Mode(m_mem, m_reg));
         std::shared_ptr<OpCode> opCode(new {{ uop }}(addressingMode, m_mem, m_reg));
         m_reg->pc(m_reg->pc() + 1);
         return opCode;
@@ -187,7 +187,7 @@ def main(argv):
         uops = json.load(fp)
 
     generate_decoder(uops)
-    generate_uops(uops)
+    # generate_uops(uops)
     
 if __name__ == '__main__':
     app.run(main)

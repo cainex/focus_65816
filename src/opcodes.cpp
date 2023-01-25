@@ -1,0 +1,1225 @@
+
+#include "opcodes.hpp"
+
+
+bool ADC::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t c = m_reg->c() ? 1 : 0;
+        uint32_t r;
+
+        r = a + o + c;
+
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->v((a ^ r) & (o ^ r) & 0x8000);
+        m_reg->c(get_c(r));
+        return true;
+
+}
+
+bool AND::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = a & o;
+
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool ASL::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o << 1;
+
+        m_addrMode->operand(r);
+        m_reg->c(get_c(r));
+        return true;
+
+}
+
+bool BCC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t c = m_reg->c() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (c == 0) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BCS::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t c = m_reg->c() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (c == 1) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BEQ::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t z = m_reg->z() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (z == 1) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BIT::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = a & o;
+
+        m_reg->z(get_z(r));
+        m_reg->n(m_reg->m() ? (r>>7)&0x1 : (r>>15)&0x1);
+        m_reg->v(m_reg->m() ? (r>>6)&0x1 : (r>>14)&0x1);
+        return true;
+
+}
+
+bool BMI::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t n = m_reg->n() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (n == 1) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BNE::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t z = m_reg->z() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (z == 0) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BPL::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t n = m_reg->n() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (n == 0) r = pc + 0; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BRA::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        r = pc + o;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BRK::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool BRL::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        r = pc + o;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BVC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t v = m_reg->v() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (v == 0) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool BVS::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t v = m_reg->v() ? 1 : 0;
+        uint32_t pc = m_reg->pc();
+        uint32_t r;
+
+        if (v == 1) r = pc + o; else r = pc;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool CLC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t c = m_reg->c() ? 1 : 0;
+        uint32_t r;
+
+        r = 0;
+
+        m_reg->c(r);
+        return true;
+
+}
+
+bool CLD::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = 0;
+
+        m_reg->d(r);
+        return true;
+
+}
+
+bool CLI::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = 0;
+
+        m_reg->i(r);
+        return true;
+
+}
+
+bool CLV::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t v = m_reg->v() ? 1 : 0;
+        uint32_t r;
+
+        r = 0;
+
+        m_reg->v(r);
+        return true;
+
+}
+
+bool CMP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t r;
+
+        r = a - o;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        m_reg->c(get_c(r));
+        return true;
+
+}
+
+bool COP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool CPX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t x = static_cast<uint32_t>(m_reg->x());
+        uint32_t r;
+
+        r = x - o;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        m_reg->c(get_c(r));
+        return true;
+
+}
+
+bool CPY::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t y = static_cast<uint32_t>(m_reg->y());
+        uint32_t r;
+
+        r = y - o;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        m_reg->c(get_c(r));
+        return true;
+
+}
+
+bool DEC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o - 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool DEX::Execute()
+{
+    
+        uint32_t x = static_cast<uint32_t>(m_reg->x());
+        uint32_t r;
+
+        r = x - 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool DEY::Execute()
+{
+    
+        uint32_t y = static_cast<uint32_t>(m_reg->y());
+        uint32_t r;
+
+        r = y - 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool EOR::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t r;
+
+        r = a ^ o;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool INC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o + 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool INX::Execute()
+{
+    
+        uint32_t x = static_cast<uint32_t>(m_reg->x());
+        uint32_t r;
+
+        r = x + 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool INY::Execute()
+{
+    
+        uint32_t y = static_cast<uint32_t>(m_reg->y());
+        uint32_t r;
+
+        r = y + 1;
+
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool JML::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool JMP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->pc(r);
+        return true;
+
+}
+
+bool JSL::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool JSR::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool LDA::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool LDX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->x(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool LDY::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->y(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool LSR::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t u;
+        uint32_t r;
+
+        u = o & 0x1; r = o >> 1;
+
+        m_reg->n(0);
+        m_reg->z(get_z(r));
+        m_reg->c(u);
+        return true;
+
+}
+
+bool MVN::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool MVP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool NOP::Execute()
+{
+    
+        uint32_t r;
+
+        
+
+        return true;
+
+}
+
+bool ORA::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = a | o;
+
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool PEA::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o; m_mem->push(r);
+
+        return true;
+
+}
+
+bool PEI::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint16_t r;
+
+        r = m_mem->Read<uint16_t>(o);
+        m_mem->Write(m_reg->get_S(), r);
+
+        m_mem->push(r);
+
+        return true;
+
+}
+
+bool PER::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t r;
+
+        o = m_mem->read(a + r); m_mem->push(o);
+
+        return true;
+
+}
+
+bool PHA::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t r;
+
+        m_mem->push(a);
+
+        return true;
+
+}
+
+bool PHB::Execute()
+{
+    
+        uint32_t r;
+
+        m_mem->push(db);
+
+        return true;
+
+}
+
+bool PHD::Execute()
+{
+    
+        uint32_t r;
+
+        m_mem->push(dp);
+
+        return true;
+
+}
+
+bool PHK::Execute()
+{
+    
+        uint32_t r;
+
+        m_mem->push(pb);
+
+        return true;
+
+}
+
+bool PHP::Execute()
+{
+    
+        uint32_t r;
+
+        m_mem->push(p);
+
+        return true;
+
+}
+
+bool PHX::Execute()
+{
+    
+        uint32_t x = static_cast<uint32_t>(m_reg->x());
+        uint32_t r;
+
+        m_mem->push(x);
+
+        return true;
+
+}
+
+bool PHY::Execute()
+{
+    
+        uint32_t y = static_cast<uint32_t>(m_reg->y());
+        uint32_t r;
+
+        m_mem->push(y);
+
+        return true;
+
+}
+
+bool PLA::Execute()
+{
+    
+        uint32_t r;
+
+        a = m_mem->pull();
+
+        m_reg->a(a);
+        return true;
+
+}
+
+bool PLB::Execute()
+{
+    
+        uint32_t r;
+
+        db = m_mem->pull();
+
+        m_reg->db(db);
+        return true;
+
+}
+
+bool PLD::Execute()
+{
+    
+        uint32_t r;
+
+        dp = m_mem->pull();
+
+        m_reg->dp(dp);
+        return true;
+
+}
+
+bool PLP::Execute()
+{
+    
+        uint32_t r;
+
+        p = m_mem->pull();
+
+        m_reg->p(p);
+        return true;
+
+}
+
+bool PLX::Execute()
+{
+    
+        uint32_t r;
+
+        x = m_mem->pull();
+
+        m_reg->x(x);
+        return true;
+
+}
+
+bool PLY::Execute()
+{
+    
+        uint32_t r;
+
+        y = m_mem->pull();
+
+        m_reg->y(y);
+        return true;
+
+}
+
+bool REP::Execute()
+{
+    
+        uint32_t m = m_reg->m() ? 1 : 0;
+        uint32_t r;
+
+        p &= ~m;
+
+        m_reg->p(p);
+        return true;
+
+}
+
+bool ROL::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = (o << 1) | (m_reg->c() ? 1 : 0);
+
+        m_addrMode->operand(r);
+        m_reg->c(get_c(r));
+        m_reg->z(get_z(r));
+        m_reg->n(get_n(r));
+        return true;
+
+}
+
+bool ROR::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = (o >> 1) | (m_reg->c() ? 0x8000 : 0);
+
+        m_addrMode->operand(r);
+        m_reg->c(o & 1);
+        m_reg->z(get_z(r));
+        m_reg->n(get_n(r));
+        return true;
+
+}
+
+bool RTI::Execute()
+{
+    
+        uint32_t r;
+
+        m_reg->flags(m_mem->read_byte(m_reg->sp())); m_reg->sp(m_reg->sp() + 1); m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);
+
+        m_reg->sp(m_reg->sp());
+        m_reg->pc(m_reg->pc());
+        m_reg->flags(m_reg->flags());
+        return true;
+
+}
+
+bool RTL::Execute()
+{
+    
+        uint32_t r;
+
+        m_reg->pc(m_mem->read_dword(m_reg->sp())); m_reg->sp(m_reg->sp() + 4);
+
+        m_reg->sp(m_reg->sp());
+        m_reg->pc(m_reg->pc());
+        return true;
+
+}
+
+bool RTS::Execute()
+{
+    
+        uint32_t r;
+
+        m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);
+
+        m_reg->sp(m_reg->sp());
+        m_reg->pc(m_reg->pc());
+        return true;
+
+}
+
+bool SBC::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t c = m_reg->c() ? 1 : 0;
+        uint32_t r;
+
+        r = a - o - (1 - c);
+
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->v((a ^ o) & (a ^ r) & 0x8000);
+        m_reg->c(get_c(r));
+        m_reg->z(get_z(r));
+        return true;
+
+}
+
+bool SEC::Execute()
+{
+    
+        uint32_t r;
+
+        r = 1;
+
+        m_reg->c(r);
+        return true;
+
+}
+
+bool SED::Execute()
+{
+    
+        uint32_t r;
+
+        r = 1;
+
+        m_reg->d(r);
+        return true;
+
+}
+
+bool SEI::Execute()
+{
+    
+        uint32_t r;
+
+        r = 1;
+
+        m_reg->i(r);
+        return true;
+
+}
+
+bool SEP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        r = o;
+
+        m_reg->p(r);
+        return true;
+
+}
+
+bool STA::Execute()
+{
+    
+        uint32_t a = static_cast<uint32_t>(m_reg->a());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool STP::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool STX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool STY::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool STZ::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TAX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TAY::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TCD::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TCS::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TDC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TRB::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TSB::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TSC::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TSX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TXA::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TXS::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TXY::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TYA::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool TYX::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool WAI::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool WDM::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool XBA::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+
+bool XCE::Execute()
+{
+    
+        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
+        uint32_t r;
+
+        assert(0);
+
+        return true;
+
+}
+

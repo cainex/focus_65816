@@ -1,1096 +1,260 @@
 {	"uop_decode": [
-		{"opcode":"0x00", "uop":"BRK", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"7"},
-		{"opcode":"0x01", "uop":"ORA", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0x02", "uop":"COP", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"7"},
-		{"opcode":"0x03", "uop":"ORA", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0x04", "uop":"TSB", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0x05", "uop":"ORA", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x06", "uop":"ASL", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0x07", "uop":"ORA", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0x08", "uop":"PHP", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0x09", "uop":"ORA", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0x0a", "uop":"ASL", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x0b", "uop":"PHD", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0x0c", "uop":"TSB", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x0d", "uop":"ORA", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x0e", "uop":"ASL", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x0f", "uop":"ORA", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0x10", "uop":"BPL", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x11", "uop":"ORA", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0x12", "uop":"ORA", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0x13", "uop":"ORA", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0x14", "uop":"TRB", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0x15", "uop":"ORA", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x16", "uop":"ASL", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0x17", "uop":"ORA", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0x18", "uop":"CLC", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x19", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0x1a", "uop":"INC", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x1b", "uop":"TCS", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x1c", "uop":"TRB", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x1d", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0x1e", "uop":"ASL", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"3"},
-		{"opcode":"0x1f", "uop":"ORA", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0x20", "uop":"JSR", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x21", "uop":"AND", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0x22", "uop":"JSL", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"8"},
-		{"opcode":"0x23", "uop":"AND", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0x24", "uop":"BIT", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x25", "uop":"AND", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x26", "uop":"ROL", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0x27", "uop":"AND", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0x28", "uop":"PLP", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0x29", "uop":"AND", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0x2a", "uop":"ROL", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x2b", "uop":"PLD", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"5"},
-		{"opcode":"0x2c", "uop":"BIT", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x2d", "uop":"AND", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x2e", "uop":"ROL", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x2f", "uop":"AND", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0x30", "uop":"BMI", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x31", "uop":"AND", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"6"},
-		{"opcode":"0x32", "uop":"AND", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0x33", "uop":"AND", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0x34", "uop":"BIT", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x35", "uop":"AND", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x36", "uop":"ROL", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0x37", "uop":"AND", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0x38", "uop":"SEC", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x39", "uop":"AND", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0x3a", "uop":"DEC", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x3b", "uop":"TSC", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x3c", "uop":"BIT", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0x3d", "uop":"AND", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0x3e", "uop":"ROL", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
-		{"opcode":"0x3f", "uop":"AND", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0x40", "uop":"RTI", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"7"},
-		{"opcode":"0x41", "uop":"EOR", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"2"},
-		{"opcode":"0x42", "uop":"WDM", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x43", "uop":"EOR", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0x44", "uop":"MVP", "addr_mode":"BlockMove", "addr_mode_string":"xyc", "cycles":"7"},
-		{"opcode":"0x45", "uop":"EOR", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x46", "uop":"LSR", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0x47", "uop":"EOR", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0x48", "uop":"PHA", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0x49", "uop":"EOR", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0x4a", "uop":"LSR", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x4b", "uop":"PHK", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0x4c", "uop":"JMP", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"3"},
-		{"opcode":"0x4d", "uop":"EOR", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x4e", "uop":"LSR", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x4f", "uop":"EOR", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0x50", "uop":"BVC", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x51", "uop":"EOR", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0x52", "uop":"EOR", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0x53", "uop":"EOR", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0x54", "uop":"MVN", "addr_mode":"BlockMove", "addr_mode_string":"xyc", "cycles":"7"},
-		{"opcode":"0x55", "uop":"EOR", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x56", "uop":"LSR", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0x57", "uop":"EOR", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0x58", "uop":"CLI", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x59", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0x5a", "uop":"PHY", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0x5b", "uop":"TCD", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x5c", "uop":"JMP", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"4"},
-		{"opcode":"0x5d", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0x5e", "uop":"LSR", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
-		{"opcode":"0x5f", "uop":"EOR", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0x60", "uop":"RTS", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"6"},
-		{"opcode":"0x61", "uop":"ADC", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0x62", "uop":"PER", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"6"},
-		{"opcode":"0x63", "uop":"ADC", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0x64", "uop":"STZ", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x65", "uop":"ADC", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x66", "uop":"ROR", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0x67", "uop":"ADC", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0x68", "uop":"PLA", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0x69", "uop":"ADC", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0x6a", "uop":"ROR", "addr_mode":"Accumulator", "addr_mode_string":"A", "cycles":"2"},
-		{"opcode":"0x6b", "uop":"RTL", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"6"},
-		{"opcode":"0x6c", "uop":"JMP", "addr_mode":"AbsoluteIndirect", "addr_mode_string":"(a)", "cycles":"5"},
-		{"opcode":"0x6d", "uop":"ADC", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x6e", "uop":"ROR", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0x6f", "uop":"ADC", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0x70", "uop":"BVS", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x71", "uop":"ADC", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0x72", "uop":"ADC", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0x73", "uop":"ADC", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0x74", "uop":"STZ", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"3"},
-		{"opcode":"0x75", "uop":"ADC", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x76", "uop":"ROR", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0x77", "uop":"ADC", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0x78", "uop":"SEI", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x79", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0x7a", "uop":"PLY", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0x7b", "uop":"TDC", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x7c", "uop":"JMP", "addr_mode":"AbsoluteIndexedIndirect", "addr_mode_string":"(a,x)", "cycles":"6"},
-		{"opcode":"0x7d", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0x7e", "uop":"ROR", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
-		{"opcode":"0x7f", "uop":"ADC", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0x80", "uop":"BRA", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x81", "uop":"STA", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0x82", "uop":"BRL", "addr_mode":"ProgramCounterRelativeLong", "addr_mode_string":"rl", "cycles":"4"},
-		{"opcode":"0x83", "uop":"STA", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0x84", "uop":"STY", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x85", "uop":"STA", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x86", "uop":"STX", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0x87", "uop":"STA", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"2"},
-		{"opcode":"0x88", "uop":"DEY", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x89", "uop":"BIT", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0x8a", "uop":"TXA", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x8b", "uop":"PHB", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0x8c", "uop":"STY", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x8d", "uop":"STA", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x8e", "uop":"STX", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x8f", "uop":"STA", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0x90", "uop":"BCC", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0x91", "uop":"STA", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"6"},
-		{"opcode":"0x92", "uop":"STA", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0x93", "uop":"STA", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0x94", "uop":"STY", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x95", "uop":"STA", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0x96", "uop":"STX", "addr_mode":"DirectIndexedWithY", "addr_mode_string":"d,y", "cycles":"4"},
-		{"opcode":"0x97", "uop":"STA", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0x98", "uop":"TYA", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x99", "uop":"STA", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"5"},
-		{"opcode":"0x9a", "uop":"TXS", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x9b", "uop":"TXY", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0x9c", "uop":"STZ", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0x9d", "uop":"STA", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"5"},
-		{"opcode":"0x9e", "uop":"STZ", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"5"},
-		{"opcode":"0x9f", "uop":"STA", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0xa0", "uop":"LDY", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xa1", "uop":"LDA", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0xa2", "uop":"LDX", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xa3", "uop":"LDA", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0xa4", "uop":"LDY", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xa5", "uop":"LDA", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xa6", "uop":"LDX", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xa7", "uop":"LDA", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0xa8", "uop":"TAY", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xa9", "uop":"LDA", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xaa", "uop":"TAX", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xab", "uop":"PLB", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0xac", "uop":"LDY", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xad", "uop":"LDA", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xae", "uop":"LDX", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xaf", "uop":"LDA", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0xb0", "uop":"BCS", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0xb1", "uop":"LDA", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0xb2", "uop":"LDA", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0xb3", "uop":"LDA", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0xb4", "uop":"LDY", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0xb5", "uop":"LDA", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0xb6", "uop":"LDX", "addr_mode":"DirectIndexedWithY", "addr_mode_string":"d,y", "cycles":"4"},
-		{"opcode":"0xb7", "uop":"LDA", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0xb8", "uop":"CLV", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xb9", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0xba", "uop":"TSX", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xbb", "uop":"TYX", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xbc", "uop":"LDY", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0xbd", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0xbe", "uop":"LDX", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0xbf", "uop":"LDA", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0xc0", "uop":"CPY", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xc1", "uop":"CMP", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0xc2", "uop":"REP", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"3"},
-		{"opcode":"0xc3", "uop":"CMP", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0xc4", "uop":"CPY", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xc5", "uop":"CMP", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xc6", "uop":"DEC", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0xc7", "uop":"CMP", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0xc8", "uop":"INY", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xc9", "uop":"CMP", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xca", "uop":"DEX", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xcb", "uop":"WAI", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"3"},
-		{"opcode":"0xcc", "uop":"CPY", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xcd", "uop":"CMP", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xce", "uop":"DEC", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0xcf", "uop":"CMP", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0xd0", "uop":"BNE", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0xd1", "uop":"CMP", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0xd2", "uop":"CMP", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0xd3", "uop":"CMP", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0xd4", "uop":"PEI", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"6"},
-		{"opcode":"0xd5", "uop":"CMP", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0xd6", "uop":"DEC", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0xd7", "uop":"CMP", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0xd8", "uop":"CLD", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xd9", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0xda", "uop":"PHX", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"3"},
-		{"opcode":"0xdb", "uop":"STP", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"3"},
-		{"opcode":"0xdc", "uop":"JML", "addr_mode":"AbsoluteIndirect", "addr_mode_string":"(a)", "cycles":"6"},
-		{"opcode":"0xdd", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0xde", "uop":"DEC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
-		{"opcode":"0xdf", "uop":"CMP", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"},
-		{"opcode":"0xe0", "uop":"CPX", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xe1", "uop":"SBC", "addr_mode":"DirectIndexedIndirect", "addr_mode_string":"(d,x)", "cycles":"6"},
-		{"opcode":"0xe2", "uop":"SEP", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"3"},
-		{"opcode":"0xe3", "uop":"SBC", "addr_mode":"StackRelative", "addr_mode_string":"d,s", "cycles":"4"},
-		{"opcode":"0xe4", "uop":"CPX", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xe5", "uop":"SBC", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"3"},
-		{"opcode":"0xe6", "uop":"INC", "addr_mode":"Direct", "addr_mode_string":"d", "cycles":"5"},
-		{"opcode":"0xe7", "uop":"SBC", "addr_mode":"DirectIndirectLong", "addr_mode_string":"[d]", "cycles":"6"},
-		{"opcode":"0xe8", "uop":"INX", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xe9", "uop":"SBC", "addr_mode":"Immediate", "addr_mode_string":"#", "cycles":"2"},
-		{"opcode":"0xea", "uop":"NOP", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xeb", "uop":"XBA", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"3"},
-		{"opcode":"0xec", "uop":"CPX", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xed", "uop":"SBC", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"4"},
-		{"opcode":"0xee", "uop":"INC", "addr_mode":"Absolute", "addr_mode_string":"a", "cycles":"6"},
-		{"opcode":"0xef", "uop":"SBC", "addr_mode":"AbsoluteLong", "addr_mode_string":"al", "cycles":"5"},
-		{"opcode":"0xf0", "uop":"BEQ", "addr_mode":"ProgramCounterRelative", "addr_mode_string":"r", "cycles":"2"},
-		{"opcode":"0xf1", "uop":"SBC", "addr_mode":"DirectIndirectIndexed", "addr_mode_string":"(d),y", "cycles":"5"},
-		{"opcode":"0xf2", "uop":"SBC", "addr_mode":"DirectIndirect", "addr_mode_string":"(d)", "cycles":"5"},
-		{"opcode":"0xf3", "uop":"SBC", "addr_mode":"StackRelativeIndirectIndexed", "addr_mode_string":"(d,s),y", "cycles":"7"},
-		{"opcode":"0xf4", "uop":"PEA", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"5"},
-		{"opcode":"0xf5", "uop":"SBC", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"4"},
-		{"opcode":"0xf6", "uop":"INC", "addr_mode":"DirectIndexedWithX", "addr_mode_string":"d,x", "cycles":"6"},
-		{"opcode":"0xf7", "uop":"SBC", "addr_mode":"DirectIndirectLongIndexed", "addr_mode_string":"[d],y", "cycles":"6"},
-		{"opcode":"0xf8", "uop":"SED", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xf9", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithY", "addr_mode_string":"a,y", "cycles":"4"},
-		{"opcode":"0xfa", "uop":"PLX", "addr_mode":"Stack", "addr_mode_string":"s", "cycles":"4"},
-		{"opcode":"0xfb", "uop":"XCE", "addr_mode":"Implied", "addr_mode_string":"i", "cycles":"2"},
-		{"opcode":"0xfc", "uop":"JSR", "addr_mode":"AbsoluteIndexedIndirect", "addr_mode_string":"(a,x)", "cycles":"8"},
-		{"opcode":"0xfd", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"4"},
-		{"opcode":"0xfe", "uop":"INC", "addr_mode":"AbsoluteIndexedWithX", "addr_mode_string":"a,x", "cycles":"7"},
-		{"opcode":"0xff", "uop":"SBC", "addr_mode":"AbsoluteLongIndexed", "addr_mode_string":"al,x", "cycles":"5"}
-	],
-
-	"uops_operation" : [
-		{
-			"uop" : "ADC",
-			"in" : ["a", "o", "c"],
-			"op" : "r = a + o + c;",
-			"out" : {
-				"a" : "r",
-				"n" : "get_n(r)",
-				"v" : "(a ^ r) & (o ^ r) & 0x8000",
-				"c" : "get_c(r)"
-			}
-		},
-		{
-			"uop" : "AND",
-			"in" : ["a", "o"],
-			"op" : "r = a & o;",
-			"out" : {
-				"a" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "ASL",
-			"in"  : ["o"],
-			"op" : "r = o << 1;",
-			"out" : {
-				"o": "r",
-				"c" : "get_c(r)"
-			}
-		},
-		{
-			"uop" : "BCC",
-			"in" : ["o", "c", "pc"],
-			"op" : "if (c == 0) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BCS",
-			"in" : ["o", "c", "pc"],
-			"op" : "if (c == 1) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BEQ",
-			"in" : ["o", "z", "pc"],
-			"op" : "if (z == 1) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BIT",
-			"in" : ["a", "o"],
-			"op" : "r = a & o;",
-			"out" : {
-				"z" : "get_z(r)",
-				"n" : "m_reg->m() ? (r>>7)&0x1 : (r>>15)&0x1",
-				"v" : "m_reg->m() ? (r>>6)&0x1 : (r>>14)&0x1"
-			}
-		},
-		{
-			"uop" : "BMI",
-			"in" : ["o", "n", "pc"],
-			"op" : "if (n == 1) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BNE",
-			"in" : ["o", "z", "pc"],
-			"op" : "if (z == 0) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BPL",
-			"in" : ["o", "n", "pc"],
-			"op" : "if (n == 0) r = pc + 0; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BRA",
-			"in" : ["o", "pc"],
-			"op" : "r = pc + o;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BRK",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "BRL",
-			"in" : ["o", "pc"],
-			"op" : "r = pc + o;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BVC",
-			"in" : ["o", "v", "pc"],
-			"op" : "if (v == 0) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "BVS",
-			"in" : ["o", "v", "pc"],
-			"op" : "if (v == 1) r = pc + o; else r = pc;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "CLC",
-			"in" : ["o", "c"],
-			"op" : "r = 0;",
-			"out" : {
-				"c" : "r"
-			}
-		},
-		{
-			"uop" : "CLD",
-			"in" : ["o", "d"],
-			"op" : "r = 0;",
-			"out" : {
-				"d" : "r"
-			}
-		},
-		{
-			"uop" : "CLI",
-			"in" : ["o", "i"],
-			"op" : "r = 0;",
-			"out" : {
-				"i" : "r"
-			}
-		},
-		{
-			"uop" : "CLV",
-			"in" : ["o", "v"],
-			"op" : "r = 0;",
-			"out" : {
-				"v" : "r"
-			}
-		},
-		{
-			"uop" : "CMP",
-			"in" : ["o", "a"],
-			"op" : "r = a - o;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)",
-				"c" : "get_c(r)"
-			}
-		},
-		{
-			"uop" : "COP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "CPX",
-			"in" : ["o", "x"],
-			"op" : "r = x - o;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)",
-				"c" : "get_c(r)"
-			}
-		},
-		{
-			"uop" : "CPY",
-			"in" : ["o", "y"],
-			"op" : "r = y - o;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)",
-				"c" : "get_c(r)"
-			}
-		},
-		{
-			"uop" : "DEC",
-			"in" : ["o"],
-			"op" : "r = o - 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "DEX",
-			"in" : ["x"],
-			"op" : "r = x - 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "DEY",
-			"in" : ["y"],
-			"op" : "r = y - 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "EOR",
-			"in" : ["o", "a"],
-			"op" : "r = a ^ o;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "INC",
-			"in" : ["o"],
-			"op" : "r = o + 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"	
-			}
-		},
-		{
-			"uop" : "INX",
-			"in" : ["x"],
-			"op" : "r = x + 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "INY",
-			"in" : ["y"],
-			"op" : "r = y + 1;",
-			"out" : {
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "JML",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "JMP",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"pc" : "r"
-			}
-		},
-		{
-			"uop" : "JSL",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "JSR",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "LDA",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"a" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "LDX",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"x" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"	
-			}
-		},
-		{
-			"uop" : "LDY",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"y" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"	
-			}
-		},
-		{
-			"uop" : "LSR",
-			"in" : ["o"],
-			"internal" : ["u"],
-			"op" : "u = o & 0x1; r = o >> 1;",
-			"out" : {
-				"n" : "0",
-				"z" : "get_z(r)",
-				"c" : "u"
-			}
-		},
-		{
-			"uop" : "MVN",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "MVP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "NOP",
-			"in" : [],
-			"op" : "",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "ORA",
-			"in" : ["a", "o"],
-			"op" : "r = a | o;",
-			"out" : {
-				"a" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "PEA",
-			"in" : ["a", "o"],
-			"op" : "r = o; m_mem->push(r);",
-			"out" : {}
-		},
-		{
-			"uop" : "PEI",
-			"in" : ["a", "o"],
-			"op" : "r = m_mem->read(o); m_mem->push(r);",
-			"out" : {}
-		},
-		{
-			"uop" : "PER",
-			"in" : ["a", "r"],
-			"op" : "o = m_mem->read(a + r); m_mem->push(o);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHA",
-			"in" : ["a"],
-			"op" : "m_mem->push(a);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHB",
-			"in" : ["db"],
-			"op" : "m_mem->push(db);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHD",
-			"in" : ["dp"],
-			"op" : "m_mem->push(dp);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHK",
-			"in" : ["pb"],
-			"op" : "m_mem->push(pb);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHP",
-			"in" : ["p"],
-			"op" : "m_mem->push(p);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHX",
-			"in" : ["x"],
-			"op" : "m_mem->push(x);",
-			"out" : {}
-		},
-		{
-			"uop" : "PHY",
-			"in" : ["y"],
-			"op" : "m_mem->push(y);",
-			"out" : {}
-		},
-		{
-			"uop" : "PLA",
-			"in" : [],
-			"op" : "a = m_mem->pull();",
-			"out" : {
-				"a" : "a"
-			}
-		},
-		{
-			"uop" : "PLB",
-			"in" : [],
-			"op" : "db = m_mem->pull();",
-			"out" : {
-				"db" : "db"
-			}
-		},
-		{
-			"uop" : "PLD",
-			"in" : [],
-			"op" : "dp = m_mem->pull();",
-			"out": {
-				"dp" : "dp"
-			}
-		},
-		{
-			"uop" : "PLP",
-			"in" : [],
-			"op" : "p = m_mem->pull();",
-			"out" : {
-				"p" : "p"
-			}
-		},
-		{
-			"uop" : "PLX",
-			"in" : [],
-			"op" : "x = m_mem->pull();",
-			"out" : {
-				"x" : "x"
-			}
-		},
-		{
-			"uop" : "PLY",
-			"in" : [],
-			"op" : "y = m_mem->pull();",
-			"out" : {
-				"y" : "y"
-			}
-		},
-		{
-			"uop" : "REP",
-			"in" : ["m"],
-			"op" : "p &= ~m;",
-			"out" : {
-				"p" : "p"
-			}
-		},
-		{
-			"uop" : "ROL",
-			"in"  : ["o"],
-			"op" : "r = (o << 1) | (m_reg->c() ? 1 : 0);",
-			"out" : {
-				"o": "r",
-				"c" : "get_c(r)",
-				"z" : "get_z(r)",
-				"n" : "get_n(r)"
-			}
-		},
-		{
-			"uop" : "ROR",
-			"in"  : ["o"],
-			"op" : "r = (o >> 1) | (m_reg->c() ? 0x8000 : 0);",
-			"out" : {
-				"o": "r",
-				"c" : "o & 1",
-				"z" : "get_z(r)",
-				"n" : "get_n(r)"
-			}
-		},
-		{
-			"uop" : "RTI",
-			"op" : "m_reg->flags(m_mem->read_byte(m_reg->sp())); m_reg->sp(m_reg->sp() + 1); m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);",
-			"in" : ["sp"],
-			"out" : {
-				"sp" : "m_reg->sp()",
-				"pc" : "m_reg->pc()",
-				"flags" : "m_reg->flags()"
-			}
-		},
-		{
-			"uop" : "RTL",
-			"op" : "m_reg->pc(m_mem->read_dword(m_reg->sp())); m_reg->sp(m_reg->sp() + 4);",
-			"in" : ["sp"],
-			"out" : {
-				"sp" : "m_reg->sp()",
-				"pc" : "m_reg->pc()"
-			}
-		},
-		{
-			"uop" : "RTS",
-			"op" : "m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);",
-			"in" : ["sp"],
-			"out" : {
-				"sp" : "m_reg->sp()",
-				"pc" : "m_reg->pc()"
-			}
-		},
-		{
-			"uop" : "SBC",
-			"in" : ["a", "o", "c"],
-			"op" : "r = a - o - (1 - c);",
-			"out" : {
-				"a" : "r",
-				"n" : "get_n(r)",
-				"v" : "(a ^ o) & (a ^ r) & 0x8000",
-				"c" : "get_c(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "SEC",
-			"in" : [],
-			"op" : "r = 1;",
-			"out" : {
-				"c" : "r"
-			}
-		},
-		{
-			"uop" : "SED",
-			"in" : [],
-			"op" : "r = 1;",
-			"out" : {
-				"d" : "r"
-			}
-		},
-		{
-			"uop" : "SEI",
-			"in" : [],
-			"op" : "r = 1;",
-			"out" : {
-				"i" : "r"
-			}
-		},
-		{
-			"uop" : "SEP",
-			"in" : ["o"],
-			"op" : "r = o;",
-			"out" : {
-				"p" : "r"
-			}
-		},
-		{
-			"uop" : "STA",
-			"in" : ["a"],
-			"op" : "r = a;",
-			"out" : {
-				"o" : "r"
-			}
-		},
-		{
-			"uop" : "STP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "STX",
-			"in" : ["x"],
-			"op" : "r = x;",
-			"out" : {
-				"o" : "r"
-			}
-		},
-		{
-			"uop" : "STY",
-			"in" : ["y"],
-			"op" : "r = y;",
-			"out" : {
-				"o" : "r"
-			}
-		},
-		{
-			"uop" : "STZ",
-			"in" : ["o"],
-			"op" : "r = 0;",
-			"out" : {
-				"o" : "r"
-			}
-		},
-		{
-			"uop" : "TAX",
-			"in" : ["a"],
-			"op" : "r = a;",
-			"out" : {
-				"x" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "TAY",
-			"in" : ["a"],
-			"op" : "r = a;",
-			"out" : {
-				"y" : "r",
-				"n" : "get_n(r)",
-				"z" : "get_z(r)"
-			}
-		},
-		{
-			"uop" : "TCD",
-			"in" : ["a"],
-		{
-			"uop" : "SEP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "STA",
-			"in" : ["a"],
-			"op" : "r = a;",
-			"out" : {
-				"o" : "r"
-			}
-		},
-		{
-			"uop" : "STP",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "STX",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "STY",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "STZ",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TAX",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TAY",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TCD",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TCS",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TDC",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TRB",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TSB",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TSC",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TSX",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TXA",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TXS",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TXY",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TYA",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "TYX",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "WAI",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "WDM",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "XBA",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		},
-		{
-			"uop" : "XCE",
-			"in" : ["o"],
-			"op" : "assert(0);",
-			"out" : {
-	
-			}
-		}
-	
+		{"opcode":"0x00", "uop":"BRK", "addr_mode":"Stack_22j", "addr_mode_string":"s", "cycles":"7"},
+		{"opcode":"0x01", "uop":"ORA", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0x02", "uop":"COP", "addr_mode":"Stack_22j", "addr_mode_string":"s", "cycles":"7"},
+		{"opcode":"0x03", "uop":"ORA", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0x04", "uop":"TSB", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0x05", "uop":"ORA", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x06", "uop":"ASL", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0x07", "uop":"ORA", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0x08", "uop":"PHP", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0x09", "uop":"ORA", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0x0a", "uop":"ASL", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x0b", "uop":"PHD", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0x0c", "uop":"TSB", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x0d", "uop":"ORA", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x0e", "uop":"ASL", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x0f", "uop":"ORA", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0x10", "uop":"BPL", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x11", "uop":"ORA", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0x12", "uop":"ORA", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0x13", "uop":"ORA", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0x14", "uop":"TRB", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0x15", "uop":"ORA", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x16", "uop":"ASL", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0x17", "uop":"ORA", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0x18", "uop":"CLC", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x19", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0x1a", "uop":"INC", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x1b", "uop":"TCS", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x1c", "uop":"TRB", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x1d", "uop":"ORA", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0x1e", "uop":"ASL", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"3"},
+		{"opcode":"0x1f", "uop":"ORA", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0x20", "uop":"JSR", "addr_mode":"Absolute_1c", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x21", "uop":"AND", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0x22", "uop":"JSL", "addr_mode":"AbsoluteLong_4c", "addr_mode_string":"al", "cycles":"8"},
+		{"opcode":"0x23", "uop":"AND", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0x24", "uop":"BIT", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x25", "uop":"AND", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x26", "uop":"ROL", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0x27", "uop":"AND", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0x28", "uop":"PLP", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0x29", "uop":"AND", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0x2a", "uop":"ROL", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x2b", "uop":"PLD", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"5"},
+		{"opcode":"0x2c", "uop":"BIT", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x2d", "uop":"AND", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x2e", "uop":"ROL", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x2f", "uop":"AND", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0x30", "uop":"BMI", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x31", "uop":"AND", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"6"},
+		{"opcode":"0x32", "uop":"AND", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0x33", "uop":"AND", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0x34", "uop":"BIT", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x35", "uop":"AND", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x36", "uop":"ROL", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0x37", "uop":"AND", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0x38", "uop":"SEC", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x39", "uop":"AND", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0x3a", "uop":"DEC", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x3b", "uop":"TSC", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x3c", "uop":"BIT", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0x3d", "uop":"AND", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0x3e", "uop":"ROL", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"7"},
+		{"opcode":"0x3f", "uop":"AND", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0x40", "uop":"RTI", "addr_mode":"Stack_22g", "addr_mode_string":"s", "cycles":"7"},
+		{"opcode":"0x41", "uop":"EOR", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"2"},
+		{"opcode":"0x42", "uop":"WDM", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x43", "uop":"EOR", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0x44", "uop":"MVP", "addr_mode":"BlockMove_9b", "addr_mode_string":"xyc", "cycles":"7"},
+		{"opcode":"0x45", "uop":"EOR", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x46", "uop":"LSR", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0x47", "uop":"EOR", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0x48", "uop":"PHA", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0x49", "uop":"EOR", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0x4a", "uop":"LSR", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x4b", "uop":"PHK", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0x4c", "uop":"JMP", "addr_mode":"Absolute_1b", "addr_mode_string":"a", "cycles":"3"},
+		{"opcode":"0x4d", "uop":"EOR", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x4e", "uop":"LSR", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x4f", "uop":"EOR", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0x50", "uop":"BVC", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x51", "uop":"EOR", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0x52", "uop":"EOR", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0x53", "uop":"EOR", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0x54", "uop":"MVN", "addr_mode":"BlockMove_9a", "addr_mode_string":"xyc", "cycles":"7"},
+		{"opcode":"0x55", "uop":"EOR", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x56", "uop":"LSR", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0x57", "uop":"EOR", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0x58", "uop":"CLI", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x59", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0x5a", "uop":"PHY", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0x5b", "uop":"TCD", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x5c", "uop":"JMP", "addr_mode":"AbsoluteLong_4b", "addr_mode_string":"al", "cycles":"4"},
+		{"opcode":"0x5d", "uop":"EOR", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0x5e", "uop":"LSR", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"7"},
+		{"opcode":"0x5f", "uop":"EOR", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0x60", "uop":"RTS", "addr_mode":"Stack_22h", "addr_mode_string":"s", "cycles":"6"},
+		{"opcode":"0x61", "uop":"ADC", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0x62", "uop":"PER", "addr_mode":"Stack_22f", "addr_mode_string":"s", "cycles":"6"},
+		{"opcode":"0x63", "uop":"ADC", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0x64", "uop":"STZ", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x65", "uop":"ADC", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x66", "uop":"ROR", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0x67", "uop":"ADC", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0x68", "uop":"PLA", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0x69", "uop":"ADC", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0x6a", "uop":"ROR", "addr_mode":"Accumulator_8", "addr_mode_string":"A", "cycles":"2"},
+		{"opcode":"0x6b", "uop":"RTL", "addr_mode":"Stack_22i", "addr_mode_string":"s", "cycles":"6"},
+		{"opcode":"0x6c", "uop":"JMP", "addr_mode":"AbsoluteIndirect_3b", "addr_mode_string":"(a)", "cycles":"5"},
+		{"opcode":"0x6d", "uop":"ADC", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x6e", "uop":"ROR", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0x6f", "uop":"ADC", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0x70", "uop":"BVS", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x71", "uop":"ADC", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0x72", "uop":"ADC", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0x73", "uop":"ADC", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0x74", "uop":"STZ", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"3"},
+		{"opcode":"0x75", "uop":"ADC", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x76", "uop":"ROR", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0x77", "uop":"ADC", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0x78", "uop":"SEI", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x79", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0x7a", "uop":"PLY", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0x7b", "uop":"TDC", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x7c", "uop":"JMP", "addr_mode":"AbsoluteIndexedIndirect_2a", "addr_mode_string":"(a,x)", "cycles":"6"},
+		{"opcode":"0x7d", "uop":"ADC", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0x7e", "uop":"ROR", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"7"},
+		{"opcode":"0x7f", "uop":"ADC", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0x80", "uop":"BRA", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x81", "uop":"STA", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0x82", "uop":"BRL", "addr_mode":"ProgramCounterRelativeLong_21", "addr_mode_string":"rl", "cycles":"4"},
+		{"opcode":"0x83", "uop":"STA", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0x84", "uop":"STY", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x85", "uop":"STA", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x86", "uop":"STX", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0x87", "uop":"STA", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"2"},
+		{"opcode":"0x88", "uop":"DEY", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x89", "uop":"BIT", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0x8a", "uop":"TXA", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x8b", "uop":"PHB", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0x8c", "uop":"STY", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x8d", "uop":"STA", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x8e", "uop":"STX", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x8f", "uop":"STA", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0x90", "uop":"BCC", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0x91", "uop":"STA", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"6"},
+		{"opcode":"0x92", "uop":"STA", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0x93", "uop":"STA", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0x94", "uop":"STY", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x95", "uop":"STA", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0x96", "uop":"STX", "addr_mode":"DirectIndexedWithX_17", "addr_mode_string":"d,y", "cycles":"4"},
+		{"opcode":"0x97", "uop":"STA", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0x98", "uop":"TYA", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x99", "uop":"STA", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"5"},
+		{"opcode":"0x9a", "uop":"TXS", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x9b", "uop":"TXY", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0x9c", "uop":"STZ", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0x9d", "uop":"STA", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"5"},
+		{"opcode":"0x9e", "uop":"STZ", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"5"},
+		{"opcode":"0x9f", "uop":"STA", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0xa0", "uop":"LDY", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xa1", "uop":"LDA", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0xa2", "uop":"LDX", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xa3", "uop":"LDA", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0xa4", "uop":"LDY", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xa5", "uop":"LDA", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xa6", "uop":"LDX", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xa7", "uop":"LDA", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0xa8", "uop":"TAY", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xa9", "uop":"LDA", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xaa", "uop":"TAX", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xab", "uop":"PLB", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0xac", "uop":"LDY", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xad", "uop":"LDA", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xae", "uop":"LDX", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xaf", "uop":"LDA", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0xb0", "uop":"BCS", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0xb1", "uop":"LDA", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0xb2", "uop":"LDA", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0xb3", "uop":"LDA", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0xb4", "uop":"LDY", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0xb5", "uop":"LDA", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0xb6", "uop":"LDX", "addr_mode":"DirectIndexedWithX_17", "addr_mode_string":"d,y", "cycles":"4"},
+		{"opcode":"0xb7", "uop":"LDA", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0xb8", "uop":"CLV", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xb9", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0xba", "uop":"TSX", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xbb", "uop":"TYX", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xbc", "uop":"LDY", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0xbd", "uop":"LDA", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0xbe", "uop":"LDX", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0xbf", "uop":"LDA", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0xc0", "uop":"CPY", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xc1", "uop":"CMP", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0xc2", "uop":"REP", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"3"},
+		{"opcode":"0xc3", "uop":"CMP", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0xc4", "uop":"CPY", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xc5", "uop":"CMP", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xc6", "uop":"DEC", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0xc7", "uop":"CMP", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0xc8", "uop":"INY", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xc9", "uop":"CMP", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xca", "uop":"DEX", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xcb", "uop":"WAI", "addr_mode":"Implied_19d", "addr_mode_string":"i", "cycles":"3"},
+		{"opcode":"0xcc", "uop":"CPY", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xcd", "uop":"CMP", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xce", "uop":"DEC", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0xcf", "uop":"CMP", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0xd0", "uop":"BNE", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0xd1", "uop":"CMP", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0xd2", "uop":"CMP", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0xd3", "uop":"CMP", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0xd4", "uop":"PEI", "addr_mode":"Stack_22e", "addr_mode_string":"s", "cycles":"6"},
+		{"opcode":"0xd5", "uop":"CMP", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0xd6", "uop":"DEC", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0xd7", "uop":"CMP", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0xd8", "uop":"CLD", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xd9", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0xda", "uop":"PHX", "addr_mode":"Stack_22c", "addr_mode_string":"s", "cycles":"3"},
+		{"opcode":"0xdb", "uop":"STP", "addr_mode":"Implied_19c", "addr_mode_string":"i", "cycles":"3"},
+		{"opcode":"0xdc", "uop":"JML", "addr_mode":"AbsoluteIndirect_3a", "addr_mode_string":"(a)", "cycles":"6"},
+		{"opcode":"0xdd", "uop":"CMP", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0xde", "uop":"DEC", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"7"},
+		{"opcode":"0xdf", "uop":"CMP", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"},
+		{"opcode":"0xe0", "uop":"CPX", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xe1", "uop":"SBC", "addr_mode":"DirectIndexedIndirect_11", "addr_mode_string":"(d,x)", "cycles":"6"},
+		{"opcode":"0xe2", "uop":"SEP", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"3"},
+		{"opcode":"0xe3", "uop":"SBC", "addr_mode":"StackRelative_23", "addr_mode_string":"d,s", "cycles":"4"},
+		{"opcode":"0xe4", "uop":"CPX", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xe5", "uop":"SBC", "addr_mode":"Direct_10a", "addr_mode_string":"d", "cycles":"3"},
+		{"opcode":"0xe6", "uop":"INC", "addr_mode":"Direct_10b", "addr_mode_string":"d", "cycles":"5"},
+		{"opcode":"0xe7", "uop":"SBC", "addr_mode":"DirectIndirectLong_15", "addr_mode_string":"[d]", "cycles":"6"},
+		{"opcode":"0xe8", "uop":"INX", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xe9", "uop":"SBC", "addr_mode":"Immediate_18", "addr_mode_string":"#", "cycles":"2"},
+		{"opcode":"0xea", "uop":"NOP", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xeb", "uop":"XBA", "addr_mode":"Implied_19b", "addr_mode_string":"i", "cycles":"3"},
+		{"opcode":"0xec", "uop":"CPX", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xed", "uop":"SBC", "addr_mode":"Absolute_1a", "addr_mode_string":"a", "cycles":"4"},
+		{"opcode":"0xee", "uop":"INC", "addr_mode":"Absolute_1d", "addr_mode_string":"a", "cycles":"6"},
+		{"opcode":"0xef", "uop":"SBC", "addr_mode":"AbsoluteLong_4a", "addr_mode_string":"al", "cycles":"5"},
+		{"opcode":"0xf0", "uop":"BEQ", "addr_mode":"ProgramCounterRelative_20", "addr_mode_string":"r", "cycles":"2"},
+		{"opcode":"0xf1", "uop":"SBC", "addr_mode":"DirectIndirectIndexed_13", "addr_mode_string":"(d),y", "cycles":"5"},
+		{"opcode":"0xf2", "uop":"SBC", "addr_mode":"DirectIndirect_12", "addr_mode_string":"(d)", "cycles":"5"},
+		{"opcode":"0xf3", "uop":"SBC", "addr_mode":"StackRelativeIndirectIndexed_24", "addr_mode_string":"(d,s),y", "cycles":"7"},
+		{"opcode":"0xf4", "uop":"PEA", "addr_mode":"Stack_22d", "addr_mode_string":"s", "cycles":"5"},
+		{"opcode":"0xf5", "uop":"SBC", "addr_mode":"DirectIndexedWithX_16a", "addr_mode_string":"d,x", "cycles":"4"},
+		{"opcode":"0xf6", "uop":"INC", "addr_mode":"DirectIndexedWithX_16b", "addr_mode_string":"d,x", "cycles":"6"},
+		{"opcode":"0xf7", "uop":"SBC", "addr_mode":"DirectIndirectIndexedLong_14", "addr_mode_string":"[d],y", "cycles":"6"},
+		{"opcode":"0xf8", "uop":"SED", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xf9", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithY_7", "addr_mode_string":"a,y", "cycles":"4"},
+		{"opcode":"0xfa", "uop":"PLX", "addr_mode":"Stack_22b", "addr_mode_string":"s", "cycles":"4"},
+		{"opcode":"0xfb", "uop":"XCE", "addr_mode":"Implied_19a", "addr_mode_string":"i", "cycles":"2"},
+		{"opcode":"0xfc", "uop":"JSR", "addr_mode":"AbsoluteIndexedIndirect_2b", "addr_mode_string":"(a,x)", "cycles":"8"},
+		{"opcode":"0xfd", "uop":"SBC", "addr_mode":"AbsoluteIndexedWithX_6b", "addr_mode_string":"a,x", "cycles":"4"},
+		{"opcode":"0xfe", "uop":"INC", "addr_mode":"AbsoluteIndexedWithX_6a", "addr_mode_string":"a,x", "cycles":"7"},
+		{"opcode":"0xff", "uop":"SBC", "addr_mode":"AbsoluteLongIndexed_5", "addr_mode_string":"al,x", "cycles":"5"}
 	]
+
 }

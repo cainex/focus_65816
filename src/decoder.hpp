@@ -3,7 +3,7 @@
 #include <memory>
 #include "register_file.hpp"
 #include "memory_manager.hpp"
-#include "generated_opcodes.hpp"
+#include "opcodes.hpp"
 #include "addressing_modes.hpp"
 
 class Decoder
