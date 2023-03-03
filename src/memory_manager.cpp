@@ -67,16 +67,6 @@ bool MemoryManager::Write(const uint32_t &address, const uint16_t &data)
     return dev->Write(address, data);
 }
 
-bool MemoryManager::Push(const uint8_t &data)
-{
-    return false;
-}
-
-bool MemoryManager::Pull(uint8_t &data)
-{
-    return false;
-}
-
 bool MemoryManager::AddDevice(std::shared_ptr< MemoryDevice > device)
 {
     m_devices.push_back(device);

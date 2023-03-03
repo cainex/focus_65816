@@ -25,6 +25,9 @@ protected:
     bool get_c(uint32_t r) { return r & 0x10000; }
     bool get_n(uint32_t r) { return r & 0x8000; }
     bool get_z(uint32_t r) { return r == 0; }
+
+    void stack_push(uint8_t data) { m_mem->Write(m_reg->s_addr(), data); m_reg->s(m_reg->s() - 1); }
+    uint8_t stack_pop() { m_reg->s(m_reg->s() + 1); return m_mem->Read<uint8_t>(m_reg->s_addr()); }
 };
 
 

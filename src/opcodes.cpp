@@ -603,43 +603,37 @@ bool ORA::Execute()
 
 bool PEA::Execute()
 {
-    
-        uint32_t a = static_cast<uint32_t>(m_reg->a());
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint16_t o = m_addrMode->operand();
 
-        r = o; m_mem->push(r);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(o>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(o&0xff));
 
         return true;
-
 }
 
 bool PEI::Execute()
 {
-    
-        uint32_t a = static_cast<uint32_t>(m_reg->a());
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint16_t r;
+        uint16_t o = m_addrMode->operand();
+        uint16_t a = m_mem->Read<uint16_t>(o);
 
-        r = m_mem->Read<uint16_t>(o);
-        m_mem->Write(m_reg->get_S(), r);
-
-        m_mem->push(r);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
-
 }
 
 bool PER::Execute()
 {
-    
-        uint32_t a = static_cast<uint32_t>(m_reg->a());
-        uint32_t r;
+        uint16_t o = m_addrMode->operand();
+        uint16_t a = m_mem->Read<uint16_t>(o);
 
-        o = m_mem->read(a + r); m_mem->push(o);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
-
 }
 
 bool PHA::Execute()

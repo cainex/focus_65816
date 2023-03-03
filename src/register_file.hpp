@@ -42,6 +42,8 @@ public:
     const uint8_t drh() { return m_dr.r.h; }
     const uint8_t pbr() { return m_pbr; }
     const uint8_t dbr() { return m_dbr; }
+    const uint8_t sl()   { return m_s.r.l; }
+    const uint8_t sh()   { return m_s.r.h; }
 
     void al(const uint8_t val)   { m_a.r.l = val; }
     void ah(const uint8_t val)   { m_a.r.h = val; }
@@ -55,6 +57,8 @@ public:
     void drh(const uint8_t val)  { m_dr.r.h = val; }
     void pbr(const uint8_t val)  { m_pbr = val; }
     void dbr(const uint8_t val)  { m_dbr = val; }
+    void sl(const uint8_t val)   { m_s.r.l = val; }
+    void sh(const uint8_t val)   { m_s.r.h = val; }
 
     // 16-bit registers
     const uint16_t a()  { return m_a.w; }
@@ -62,12 +66,14 @@ public:
     const uint16_t y()  { return m_y.w; }
     const uint16_t pc() { return m_pc.w; }
     const uint16_t dr() { return m_dr.w; }
+    const uint16_t s()  { return m_s.w; }
 
     void a(const uint16_t val)  { m_a.w = val; }
     void x(const uint16_t val)  { m_x.w = val; }
     void y(const uint16_t val)  { m_y.w = val; }
     void pc(const uint16_t val) { m_pc.w = val; }
     void dr(const uint16_t val) { m_dr.w = val; }
+    void s(const uint16_t val)  { m_s.w = val; }
 
     // 24-bit addresses
     const uint32_t x_addr() 

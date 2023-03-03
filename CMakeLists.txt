@@ -30,25 +30,25 @@ endif (CXXOPTS_FOUND)
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set (
-  SOURCE_FILES src/emulator.cpp src/memory_manager.cpp src/addressing_modes.cpp generated_opcodes.cpp generated_decoder.cpp src/memory_device.cpp src/cpu.cpp src/memory.cpp src/binary_loader.cpp
+  SOURCE_FILES src/emulator.cpp src/memory_manager.cpp src/addressing_modes.cpp src/opcodes.cpp src/decoder.cpp src/memory_device.cpp src/cpu.cpp src/memory.cpp src/binary_loader.cpp
 )
 
 set (
   HEADER_FILES deps/cxxopts/include/cxxopts.hpp src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
 )
 
-CreateVirtualEnvironment(
-    venv
-    REQUIREMENTS_TXT ${CMAKE_SOURCE_DIR}/bin/requirements  # optional
-    OUT_PYTHON_EXE PYTHON_EXE
-    OUT_BINARY_DIR PYTHON_BIN_DIR
-)
+#CreateVirtualEnvironment(
+#    venv
+#    REQUIREMENTS_TXT ${CMAKE_SOURCE_DIR}/bin/requirements  # optional
+#    OUT_PYTHON_EXE PYTHON_EXE
+#    OUT_BINARY_DIR PYTHON_BIN_DIR
+#)
 
-add_custom_command(
-  OUTPUT generated_decoder.cpp generated_opcodes.cpp generated_opcodes.hpp
-  COMMAND ${PYTHON_EXE} ${CMAKE_SOURCE_DIR}/bin/gen_code.py --filename=${CMAKE_SOURCE_DIR}/defs/uops.json
-  DEPENDS ${CMAKE_SOURCE_DIR}/defs/uops.json ${CMAKE_SOURCE_DIR}/bin/gen_code.py venv
-)
+#add_custom_command(
+#  OUTPUT generated_decoder.cpp generated_opcodes.cpp generated_opcodes.hpp
+#  COMMAND ${PYTHON_EXE} ${CMAKE_SOURCE_DIR}/bin/gen_code.py --filename=${CMAKE_SOURCE_DIR}/defs/uops.json
+#  DEPENDS ${CMAKE_SOURCE_DIR}/defs/uops.json ${CMAKE_SOURCE_DIR}/bin/gen_code.py venv
+#)
 
 add_executable(emulator ${SOURCE_FILES} ${HEADER_FILES})
 
