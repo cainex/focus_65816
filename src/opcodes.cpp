@@ -977,11 +977,8 @@ bool SEP::Execute()
 bool STA::Execute()
 {
     
-        uint32_t a = static_cast<uint32_t>(m_reg->a());
-        uint32_t r;
-
-        assert(0);
-
+        m_addrMode->operand(m_reg->a());
+        
         return true;
 
 }
@@ -989,10 +986,7 @@ bool STA::Execute()
 bool STP::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
-
-        assert(0);
+        m_addrMode->operand(m_reg->stat());
 
         return true;
 
@@ -1001,10 +995,7 @@ bool STP::Execute()
 bool STX::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
-
-        assert(0);
+        m_addrMode->operand(m_reg->x());
 
         return true;
 
@@ -1013,10 +1004,7 @@ bool STX::Execute()
 bool STY::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
-
-        assert(0);
+        m_addrMode->operand(m_reg->y());
 
         return true;
 
@@ -1025,10 +1013,7 @@ bool STY::Execute()
 bool STZ::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
-
-        assert(0);
+        m_addrMode->operand(0);
 
         return true;
 
