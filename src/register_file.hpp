@@ -26,7 +26,7 @@ public:
     const uint8_t Z_POS = 1;
     const uint8_t C_POS = 0;
 
-    RegisterFile() : m_a(0), m_x(0), m_y(0), m_s(0), m_pc(0), m_dr(0), m_pbr(0), m_dbr(0), m_stat(0), m_e(false){}
+    RegisterFile() : m_a(0), m_x(0), m_y(0), m_s(0), m_pc(0), m_dr(0), m_pbr(0), m_dbr(0), m_k(0),  m_stat(0), m_e(false){}
     ~RegisterFile() {}
 
     // 8-bit registers
@@ -42,6 +42,7 @@ public:
     const uint8_t drh() { return m_dr.r.h; }
     const uint8_t pbr() { return m_pbr; }
     const uint8_t dbr() { return m_dbr; }
+    const uint8_t k()   { return m_k; }
     const uint8_t sl()   { return m_s.r.l; }
     const uint8_t sh()   { return m_s.r.h; }
 
@@ -57,6 +58,7 @@ public:
     void drh(const uint8_t val)  { m_dr.r.h = val; }
     void pbr(const uint8_t val)  { m_pbr = val; }
     void dbr(const uint8_t val)  { m_dbr = val; }
+    void k(const uint8_t val)    { m_k = val; }
     void sl(const uint8_t val)   { m_s.r.l = val; }
     void sh(const uint8_t val)   { m_s.r.h = val; }
 
@@ -102,6 +104,7 @@ public:
     }
 
     // status bits
+    const uint8_t stat() { return m_stat; }
     const bool n() { return m_stat & (0x1<<N_POS); }
     const bool v() { return m_stat & (0x1<<V_POS); }
     const bool m() { return m_stat & (0x1<<M_POS); }
@@ -143,6 +146,7 @@ public:
     void clrC() { setStat(C_POS, false); }
     void clrE() { m_e = false; }
 
+    void stat(const uint8_t val) { m_stat = val; }
     void n(bool v) { setStat(N_POS, v); }
     void v(bool v) { setStat(V_POS, v); }
     void m(bool v) { setStat(M_POS, v); }
@@ -164,6 +168,7 @@ protected:
     Reg m_dr;
     uint8_t m_pbr;
     uint8_t m_dbr;
+    uint8_t m_k;
     uint8_t m_stat;
     bool m_e;
 

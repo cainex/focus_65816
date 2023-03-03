@@ -639,10 +639,12 @@ bool PER::Execute()
 bool PHA::Execute()
 {
     
-        uint32_t a = static_cast<uint32_t>(m_reg->a());
-        uint32_t r;
+        uint16_t a = m_reg->a();
+        uint16_t r;
 
-        m_mem->push(a);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -651,9 +653,11 @@ bool PHA::Execute()
 bool PHB::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = m_reg->dbr();
 
-        m_mem->push(db);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -662,9 +666,11 @@ bool PHB::Execute()
 bool PHD::Execute()
 {
     
-        uint32_t r;
+        // uint16_t a = m_reg->d();
 
-        m_mem->push(dp);
+        // m_reg->s(m_reg->s() - 2);
+        // m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        // m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -673,9 +679,11 @@ bool PHD::Execute()
 bool PHK::Execute()
 {
     
-        uint32_t r;
+        // uint16_t a = m_reg->k();
 
-        m_mem->push(pb);
+        // m_reg->s(m_reg->s() - 2);
+        // m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        // m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -684,9 +692,10 @@ bool PHK::Execute()
 bool PHP::Execute()
 {
     
-        uint32_t r;
+        uint8_t a = m_reg->stat();
 
-        m_mem->push(p);
+        m_reg->s(m_reg->s() - 1);
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -695,10 +704,11 @@ bool PHP::Execute()
 bool PHX::Execute()
 {
     
-        uint32_t x = static_cast<uint32_t>(m_reg->x());
-        uint32_t r;
+        uint16_t a = m_reg->x();
 
-        m_mem->push(x);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -707,10 +717,11 @@ bool PHX::Execute()
 bool PHY::Execute()
 {
     
-        uint32_t y = static_cast<uint32_t>(m_reg->y());
-        uint32_t r;
+        uint16_t a = m_reg->y();
 
-        m_mem->push(y);
+        m_reg->s(m_reg->s() - 2);
+        m_mem->Write(m_reg->s()+2, static_cast<uint8_t>(a>>8));
+        m_mem->Write(m_reg->s()+1, static_cast<uint8_t>(a&0xff));
 
         return true;
 
@@ -719,11 +730,14 @@ bool PHY::Execute()
 bool PLA::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = 0;
 
-        a = m_mem->pull();
+        m_reg->s(m_reg->s() + 2);
+        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
         m_reg->a(a);
+        
         return true;
 
 }
@@ -731,11 +745,13 @@ bool PLA::Execute()
 bool PLB::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = 0;
 
-        db = m_mem->pull();
+        m_reg->s(m_reg->s() + 2);
+        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->db(db);
+        m_reg->dbr(a);
         return true;
 
 }
@@ -743,11 +759,6 @@ bool PLB::Execute()
 bool PLD::Execute()
 {
     
-        uint32_t r;
-
-        dp = m_mem->pull();
-
-        m_reg->dp(dp);
         return true;
 
 }
@@ -755,11 +766,12 @@ bool PLD::Execute()
 bool PLP::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = 0;
 
-        p = m_mem->pull();
+        m_reg->s(m_reg->s() + 1);
+        a |= m_mem->Read<uint8_t>(m_reg->s()-1);
 
-        m_reg->p(p);
+        m_reg->stat(a);
         return true;
 
 }
@@ -767,11 +779,14 @@ bool PLP::Execute()
 bool PLX::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = 0;
 
-        x = m_mem->pull();
+        m_reg->s(m_reg->s() + 2);
+        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->x(x);
+        m_reg->x(a);
+        
         return true;
 
 }
@@ -779,11 +794,14 @@ bool PLX::Execute()
 bool PLY::Execute()
 {
     
-        uint32_t r;
+        uint16_t a = 0;
 
-        y = m_mem->pull();
+        m_reg->s(m_reg->s() + 2);
+        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->y(y);
+        m_reg->y(a);
+        
         return true;
 
 }
@@ -791,12 +809,13 @@ bool PLY::Execute()
 bool REP::Execute()
 {
     
-        uint32_t m = m_reg->m() ? 1 : 0;
-        uint32_t r;
+        uint8_t o = static_cast<uint8_t>(m_addrMode->operand());
+        uint8_t r = m_reg->stat();
 
-        p &= ~m;
+        r =  r & ~o;
 
-        m_reg->p(p);
+        m_reg->stat(r);
+
         return true;
 
 }
@@ -836,13 +855,22 @@ bool ROR::Execute()
 bool RTI::Execute()
 {
     
-        uint32_t r;
+        // Pull the status register from the stack
+        uint8_t p = m_mem->Read<uint8_t>(m_reg->s() + 1);
+        m_reg->s(m_reg->s() + 2);
 
-        m_reg->flags(m_mem->read_byte(m_reg->sp())); m_reg->sp(m_reg->sp() + 1); m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);
+        // Set the status register in the register file
+        m_reg->stat(p);
 
-        m_reg->sp(m_reg->sp());
-        m_reg->pc(m_reg->pc());
-        m_reg->flags(m_reg->flags());
+        // Pull the program counter from the stack
+        uint16_t pc = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        pc |= m_mem->Read<uint8_t>(m_reg->s()) << 8;
+        m_reg->s(m_reg->s() + 1);
+
+        // Set the program counter in the register file
+        m_reg->pc(pc);
+
         return true;
 
 }
@@ -850,12 +878,16 @@ bool RTI::Execute()
 bool RTL::Execute()
 {
     
-        uint32_t r;
-
-        m_reg->pc(m_mem->read_dword(m_reg->sp())); m_reg->sp(m_reg->sp() + 4);
-
-        m_reg->sp(m_reg->sp());
-        m_reg->pc(m_reg->pc());
+        uint16_t pcl = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        uint16_t pch = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        m_reg->pc((pch << 8) | pcl);
+        m_reg->pc(m_reg->pc() + 1);
+        uint8_t pb = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        m_reg->k(pb);
+        
         return true;
 
 }
@@ -863,12 +895,13 @@ bool RTL::Execute()
 bool RTS::Execute()
 {
     
-        uint32_t r;
+        uint16_t pcl = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        uint16_t pch = m_mem->Read<uint8_t>(m_reg->s());
+        m_reg->s(m_reg->s() + 1);
+        m_reg->pc((pch << 8) | pcl);
+        m_reg->pc(m_reg->pc() + 1);
 
-        m_reg->pc(m_mem->read_word(m_reg->sp())); m_reg->sp(m_reg->sp() + 2);
-
-        m_reg->sp(m_reg->sp());
-        m_reg->pc(m_reg->pc());
         return true;
 
 }
@@ -930,13 +963,13 @@ bool SEI::Execute()
 
 bool SEP::Execute()
 {
-    
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint8_t o = static_cast<uint8_t>(m_addrMode->operand());
+        uint8_t r = m_reg->stat();
 
-        r = o;
+        r = r | o;
 
-        m_reg->p(r);
+        m_reg->stat(r);
+
         return true;
 
 }
