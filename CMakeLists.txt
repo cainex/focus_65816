@@ -27,14 +27,14 @@ if (CXXOPTS_FOUND)
   include_directories(${CXXOPTS_INCLUDE_DIRS})
   target_link_libraries (emulator ${BZIP2_LIBRARIES})
 endif (CXXOPTS_FOUND)
-find_package(Python3 REQUIRED COMPONENTS Interpreter)
+#find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set (
   SOURCE_FILES src/emulator.cpp src/memory_manager.cpp src/addressing_modes.cpp src/opcodes.cpp src/decoder.cpp src/memory_device.cpp src/cpu.cpp src/memory.cpp src/binary_loader.cpp
 )
 
 set (
-  HEADER_FILES deps/cxxopts/include/cxxopts.hpp src/memory_manager.hpp src/register_file.hpp src/decoder.hpp generated_opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
+  HEADER_FILES deps/cxxopts/include/cxxopts.hpp src/memory_manager.hpp src/register_file.hpp src/decoder.hpp src/opcodes.hpp src/memory_device.hpp src/cpu.hpp src/memory.hpp src/binary_loader.hpp
 )
 
 #CreateVirtualEnvironment(

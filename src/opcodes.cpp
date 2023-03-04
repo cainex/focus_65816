@@ -730,13 +730,15 @@ bool PHY::Execute()
 bool PLA::Execute()
 {
     
-        uint16_t a = 0;
+        uint16_t r = 0;
 
         m_reg->s(m_reg->s() + 2);
-        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
-        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->a(a);
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         
         return true;
 
@@ -745,13 +747,15 @@ bool PLA::Execute()
 bool PLB::Execute()
 {
     
-        uint16_t a = 0;
+        uint16_t r = 0;
 
         m_reg->s(m_reg->s() + 2);
-        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
-        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->dbr(a);
+        m_reg->dbr(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         return true;
 
 }
@@ -759,6 +763,15 @@ bool PLB::Execute()
 bool PLD::Execute()
 {
     
+        uint16_t r = 0;
+
+        m_reg->s(m_reg->s() + 2);
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
+
+        m_reg->dr(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         return true;
 
 }
@@ -766,12 +779,14 @@ bool PLD::Execute()
 bool PLP::Execute()
 {
     
-        uint16_t a = 0;
+        uint16_t r = 0;
 
         m_reg->s(m_reg->s() + 1);
-        a |= m_mem->Read<uint8_t>(m_reg->s()-1);
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1);
 
-        m_reg->stat(a);
+        m_reg->stat(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         return true;
 
 }
@@ -779,14 +794,15 @@ bool PLP::Execute()
 bool PLX::Execute()
 {
     
-        uint16_t a = 0;
+        uint16_t r = 0;
 
         m_reg->s(m_reg->s() + 2);
-        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
-        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->x(a);
-        
+        m_reg->x(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         return true;
 
 }
@@ -794,14 +810,15 @@ bool PLX::Execute()
 bool PLY::Execute()
 {
     
-        uint16_t a = 0;
+        uint16_t r = 0;
 
         m_reg->s(m_reg->s() + 2);
-        a |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
-        a |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-1)<<8;
+        r |= m_mem->Read<uint8_t>(m_reg->s()-2)&0xff;
 
-        m_reg->y(a);
-        
+        m_reg->y(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));        
         return true;
 
 }
@@ -1022,11 +1039,11 @@ bool STZ::Execute()
 bool TAX::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->a();
 
-        assert(0);
-
+        m_reg->x(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1034,11 +1051,11 @@ bool TAX::Execute()
 bool TAY::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->a();
 
-        assert(0);
-
+        m_reg->y(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1046,11 +1063,11 @@ bool TAY::Execute()
 bool TCD::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->a();
 
-        assert(0);
-
+        m_reg->dr(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1058,23 +1075,24 @@ bool TCD::Execute()
 bool TCS::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->a();
 
-        assert(0);
-
+        m_reg->s(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
 
+// TDC - Transfer Direct Page to Accumulator
 bool TDC::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+       uint32_t r = m_reg->dr();
 
-        assert(0);
-
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1082,23 +1100,26 @@ bool TDC::Execute()
 bool TRB::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint16_t r = m_addrMode->operand();
+        bool bitSet;
 
-        assert(0);
-
+        bitSet = (r & m_reg->a()) != 0;
+        m_reg->z(bitSet ? 0 : 1);
+        r &= ~m_reg->a();
+        m_addrMode->operand(r);
         return true;
-
 }
 
 bool TSB::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint16_t r = m_addrMode->operand();
+        bool bitSet;
 
-        assert(0);
-
+        bitSet = (r & m_reg->a()) != 0;
+        m_reg->z(bitSet ? 0 : 1);
+        r |= m_reg->a();
+        m_addrMode->operand(r);
         return true;
 
 }
@@ -1106,11 +1127,11 @@ bool TSB::Execute()
 bool TSC::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->s();
 
-        assert(0);
-
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1118,11 +1139,11 @@ bool TSC::Execute()
 bool TSX::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->s();
 
-        assert(0);
-
+        m_reg->x(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1130,11 +1151,11 @@ bool TSX::Execute()
 bool TXA::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->x();
 
-        assert(0);
-
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1142,11 +1163,11 @@ bool TXA::Execute()
 bool TXS::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->x();
 
-        assert(0);
-
+        m_reg->s(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1154,35 +1175,37 @@ bool TXS::Execute()
 bool TXY::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->x();
 
-        assert(0);
-
+        m_reg->y(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
 
+// TYA transfers the Y register to the A register.
 bool TYA::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->y();
 
-        assert(0);
-
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
 
+// TYX transfers the Y register to the X register.
 bool TYX::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+        uint32_t r = m_reg->y();
 
-        assert(0);
-
+        m_reg->x(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
@@ -1199,38 +1222,35 @@ bool WAI::Execute()
 
 }
 
+
 bool WDM::Execute()
 {
     
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
-
-        assert(0);
-
         return true;
 
 }
 
 bool XBA::Execute()
 {
-    
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
 
-        assert(0);
+        uint16_t r = m_reg->a();
 
+        r = ((r & 0xFF) << 8) | ((r & 0xFF00) >> 8);
+        m_reg->a(r);
+        m_reg->n(get_n(r));
+        m_reg->z(get_z(r));
         return true;
 
 }
 
 bool XCE::Execute()
 {
-    
-        uint32_t o = static_cast<uint32_t>(m_addrMode->operand());
-        uint32_t r;
+ 
+        bool c = m_reg->c();
+        bool e = m_reg->e();
 
-        assert(0);
-
+        m_reg->c(e);
+        m_reg->e(c);
         return true;
 
 }
